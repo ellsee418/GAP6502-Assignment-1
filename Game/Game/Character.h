@@ -1,5 +1,8 @@
 #pragma once
 #include <SFML/System/Vector2.hpp>
+#include <SFML/System/Vector3.hpp>
+
+
 
 class IEntity
 {
@@ -17,6 +20,7 @@ class Character : public IEntity
 {
 public:
 	Character(sf::Vector2f pos);
+
 	virtual sf::Vector2f GetPosition() override;
 	virtual void SetPosition(sf::Vector2f pos) override;
 
@@ -25,4 +29,5 @@ public:
 private:
 	bool m_active;
 	sf::Vector2f m_pos;
+	sf::Vector3i m_colour;
 };
