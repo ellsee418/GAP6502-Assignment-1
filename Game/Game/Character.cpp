@@ -1,6 +1,7 @@
 #include "Character.h"
 
-Character::Character(sf::Vector2f pos) : m_pos(pos), m_active(true), m_colour({0, 0, 255})
+Character::Character(sf::Vector2f pos) 
+    : m_pos(pos), m_active(true), m_colour({0, 0, 255})
 {
 }
 

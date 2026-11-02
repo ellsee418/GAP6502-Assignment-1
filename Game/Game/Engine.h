@@ -1,8 +1,9 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "Character.h"	
+#include "Character.h"
+#include "GameStates.h"
 
-class Engine
+class Engine// rename to game perhaps since this is not really gonna be the engine
 {
 public:
 	static Engine& Get();
@@ -13,7 +14,12 @@ private:
 	Engine(unsigned int height, unsigned int width);
 	~Engine();
 
-	sf::RenderWindow* mWindow;
+	bool HandleGameState();
+	void ChangeState(IState* newState);
+
+	sf::RenderWindow* m_window;
+	IState* m_gameState;
+	bool m_endGame = false;
 protected:
 
 };
