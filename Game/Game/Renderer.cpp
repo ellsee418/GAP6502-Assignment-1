@@ -1,8 +1,7 @@
 #include "Renderer.h"
 
-Renderer::Renderer(unsigned int height = 800, unsigned int width = 600) : mWindow(nullptr)
+Renderer::Renderer()
 {
-	mWindow = new sf::RenderWindow(sf::VideoMode({ height, width }), "fortnite");
 }
 
 Renderer& Renderer::Get()
@@ -11,18 +10,14 @@ Renderer& Renderer::Get()
 	return sInstance;
 }
 
-void Renderer::Update()
+void Renderer::Render(sf::RenderWindow* windowPtr)
 {
-	while (mWindow->isOpen())
-	{
-		sf::Event event;
-		while (mWindow->pollEvent(event))
-		{
-			if (event.type == sf::Event::Closed)
-				mWindow->close();
-		}
-		mWindow->clear(sf::Color::Black);
+	windowPtr->clear(sf::Color::Black);
 
-		mWindow->display();
-	}
+	sf::CircleShape shape(50.f, 3);
+	shape.setPosition({ 500.f, 500.f });
+	shape.setFillColor(sf::Color::Green);
+	windowPtr->draw(shape);
+
+	windowPtr->display();
 }

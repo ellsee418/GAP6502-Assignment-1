@@ -1,14 +1,14 @@
 #pragma once
-
 #include <SFML/Graphics.hpp>
+#include "Character.h"
+
 class Renderer
 {
 public:
 	static Renderer& Get();
-	void Update();
+	void Render(sf::RenderWindow* windowPtr);
 
 private:
-	Renderer(unsigned int width, unsigned int height);
-	sf::RenderWindow* mWindow;
+	Renderer();
 };
 
