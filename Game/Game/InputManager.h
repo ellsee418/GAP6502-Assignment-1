@@ -15,6 +15,8 @@ public:
 private:
 	InputManager();
 	int* m_keysHeld;
+	int* m_mouseButtons;
+	int m_mouseX, m_mouseY;
 	std::vector<sf::Keyboard::Key> m_keyDownEvents, m_keyReleasedEvents;// we love gamewell
 };
 

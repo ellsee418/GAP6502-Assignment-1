@@ -26,6 +26,5 @@ bool EventManager::PollEvents(sf::RenderWindow& window)
 
 void EventManager::Dispatch(const sf::Event& event)
 {
-	if (event.type == sf::Event::KeyPressed || event.type == sf::Event::KeyReleased)
-		InputManager::Get().OnEvent(event);
+	InputManager::Get().OnEvent(event);
 }
