@@ -34,11 +34,11 @@ StateResult GameState::Update()
 	if (countTo1000 >= 1000)
 	{
 		countTo1000 = 0;
-		return StateResult::StateMenu;
+		return StateResult::EStateMenu;
 	}
 	++countTo1000;
 
-	return StateResult::StateGame;
+	return StateResult::EStateGame;
 }
 
 void GameState::Init()
@@ -77,12 +77,12 @@ StateResult MenuState::Update()
 	if (countTo1000 >= 1000)
 	{
 		countTo1000 = 0;
-		return StateResult::StateGame;
+		return StateResult::EStateGame;
 	}
 
 	++countTo1000;
 
-	return StateResult::StateMenu;
+	return StateResult::EStateMenu;
 }
 
 void MenuState::Init()

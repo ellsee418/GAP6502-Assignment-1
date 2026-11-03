@@ -6,9 +6,14 @@ class Renderer
 {
 public:
 	static Renderer& Get();
-	void Render(sf::RenderWindow* windowPtr);
+	void Update();
+	void Render();
 
+	bool Active();
 private:
-	Renderer();
+	Renderer(unsigned int height, unsigned int width);
+
+
+	sf::RenderWindow* m_window;
 };
 

@@ -2,10 +2,10 @@
 
 enum class StateResult
 {
-	StateMenu = 0,
-	StateGame,
-	StateGameOver,
-	StateQuit
+	EStateMenu = 0,
+	EStateGame,
+	EStateGameOver,
+	EStateQuit
 };
 
 class IState
