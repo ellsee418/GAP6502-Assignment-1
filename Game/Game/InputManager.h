@@ -5,13 +5,16 @@
 #include <vector>
 
 
-static class InputManager
+class InputManager
 {
 public:
-	static void OnEvent(const sf::Event& event);
-	static void HandleKeyInput();
+	~InputManager();
+	static InputManager& Get();
+	void OnEvent(const sf::Event& event);
+
 private:
-	static int* m_keysHeld;
-	static std::vector<sf::Keyboard::Key> m_keyDownEvents, m_keyReleasedEvents;// we love gamewell
+	InputManager();
+	int* m_keysHeld;
+	std::vector<sf::Keyboard::Key> m_keyDownEvents, m_keyReleasedEvents;// we love gamewell
 };
 

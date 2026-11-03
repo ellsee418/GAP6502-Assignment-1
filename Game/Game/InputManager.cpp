@@ -1,9 +1,24 @@
 #include "InputManager.h"
 
+// static member definitions
 
-std::vector<sf::Keyboard::Key> InputManager::m_keyDownEvents;
-std::vector<sf::Keyboard::Key> InputManager::m_keyReleasedEvents;
-int* InputManager::m_keysHeld = new int[sf::Keyboard::KeyCount];
+
+InputManager::InputManager()
+	: m_keysHeld(nullptr)
+{
+	m_keysHeld = new int[sf::Keyboard::KeyCount];
+}
+
+InputManager::~InputManager()
+{
+	delete[] m_keysHeld;
+}
+
+InputManager& InputManager::Get()
+{
+	static InputManager sInstance;
+	return sInstance;
+}
 
 void InputManager::OnEvent(const sf::Event& event)
 {
@@ -30,7 +45,3 @@ void InputManager::OnEvent(const sf::Event& event)
 
 }
 
-void InputManager::HandleKeyInput()
-{
-
-}
