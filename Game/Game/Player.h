@@ -1,6 +1,6 @@
 #pragma once
 #include "Character.h"
-
+#include "Math.hpp"
 
 class Player : public Character
 {
@@ -17,6 +17,9 @@ public:
 	virtual sf::Color Colour() override;
 	virtual float Size() override;
 	virtual int Points() override;
+	float Speed();
+
+	void Move(sf::Vector2f dir);
 
 private:
 	bool m_active;
@@ -25,4 +28,5 @@ private:
 	float m_size;// fixed for now, add w/l later
 	int m_points;
 	float m_angle;
+	float m_speed;
 };

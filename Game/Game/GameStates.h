@@ -1,8 +1,11 @@
 #pragma once
 
 #include <vector>
+#include <SFML/System/Vector2.hpp>
+
 
 class IEntity;
+class Player;
 
 enum class StateResult
 {
@@ -51,9 +54,10 @@ public:
 	StateResult Update() override;
 
 	void Init();
+	sf::Vector2f GetInputDirection();
 
 	std::vector<IEntity*> m_entities;
-	IEntity* m_player;
+	Player* m_player;
 private:
 
 };

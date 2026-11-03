@@ -159,6 +159,7 @@
     <ClInclude Include="Character.h" />
     <ClInclude Include="EventManager.h" />
     <ClInclude Include="InputManager.h" />
+    <ClInclude Include="Math.hpp" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="GameStates.h" />
