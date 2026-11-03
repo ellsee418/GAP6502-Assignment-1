@@ -1,4 +1,6 @@
 #include "GameStates.h"
+#include "Character.h"
+#include "Renderer.h"
 #include <stdio.h>
 
 // ------------------------------ GAME STATE ------------------------------ \\
@@ -27,22 +29,19 @@ void GameState::Exit()
 
 StateResult GameState::Update()
 {
-	printf("GameState::Exit() called.\n");
+	printf("GameState::Update() called.\n");
 
-	static int countTo1000 = 0;
+	Renderer::Get().Render(m_entities);// do i want render to be handled here? idk man i dont think so - i dont wanna pass vec to RendererUpdate tho
 
-	if (countTo1000 >= 1000)
-	{
-		countTo1000 = 0;
-		return StateResult::EStateMenu;
-	}
-	++countTo1000;
-
-	return StateResult::EStateGame;
+	return StateResult::EStateContinue;
 }
 
 void GameState::Init()
 {
+	printf("GameState::Init() called. Creating Entities.\n");
+
+	for (int i = 0; i < 10; ++i)
+		m_entities.push_back(new Character({ (float)i * 60.f, (float)i * 60.f }));
 }
 
 

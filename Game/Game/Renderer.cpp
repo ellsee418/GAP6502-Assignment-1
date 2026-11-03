@@ -15,12 +15,10 @@ Renderer& Renderer::Get()
 
 void Renderer::Update()
 {
-	if (!EventManager::PollEvents(m_window)) return;
-	
-	Render();
+
 }
 
-void Renderer::Render()
+void Renderer::RenderTest()
 {
 	m_window->clear(sf::Color::Black);
 
@@ -32,7 +30,27 @@ void Renderer::Render()
 	m_window->display();
 }
 
+void Renderer::Render(std::vector<IEntity*>& vec)
+{
+	m_window->clear(sf::Color::Black);
+
+	for (int i = 0; i < vec.size(); ++i)
+	{
+		sf::CircleShape shape(50.f, 4);
+		shape.setPosition(vec[i]->GetPosition());
+		shape.setFillColor(sf::Color::Red);
+		m_window->draw(shape);
+	}
+	m_window->display();
+
+}
+
 bool Renderer::Active()
 {
 	return m_window->isOpen();
+}
+
+sf::RenderWindow& Renderer::Window() const
+{
+	return *m_window;
 }

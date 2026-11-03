@@ -3,6 +3,6 @@
 static class EventManager
 {
 public:
-	static bool PollEvents(sf::RenderWindow* window);
+	static bool PollEvents(sf::RenderWindow& window);
 };
 

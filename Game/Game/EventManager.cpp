@@ -1,18 +1,21 @@
 #include "EventManager.h"
 
-bool EventManager::PollEvents(sf::RenderWindow* window)
+bool EventManager::PollEvents(sf::RenderWindow& window)
 {
-	if (!window->isOpen()) return false;
+	if (!window.isOpen()) return false;
 
+	bool windowOpen = true;
 	sf::Event event;
-	if (!window->pollEvent(event)) return false;
-
-	if (event.type == sf::Event::Closed)
+	while (window.pollEvent(event))
 	{
-		window->close();
-		return false;
+		if (event.type == sf::Event::Closed)
+		{
+			window.close();
+			windowOpen = false;
+			continue;
+		}
+		// send event to input manager etc.
 	}
-
 	// successfully polled events on window that is not closed
-	return true;
+	return windowOpen;
 }

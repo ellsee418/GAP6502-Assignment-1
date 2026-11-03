@@ -1,11 +1,16 @@
 #pragma once
 
+#include <vector>
+
+class IEntity;
+
 enum class StateResult
 {
 	EStateMenu = 0,
 	EStateGame,
 	EStateGameOver,
-	EStateQuit
+	EStateQuit,
+	EStateContinue
 };
 
 class IState
@@ -47,7 +52,7 @@ public:
 
 	void Init();
 
-
+	std::vector<IEntity*> m_entities;
 private:
 
 };

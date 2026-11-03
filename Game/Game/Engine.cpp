@@ -1,9 +1,11 @@
 #include "Engine.h"
 #include "Renderer.h"
+#include "EventManager.h"
 
 Engine::Engine() 
 	: m_gameState(new GameState)
 {
+	m_gameState->Enter();
 }
 
 Engine::~Engine()
@@ -28,8 +30,8 @@ bool Engine::HandleGameState()
 	case StateResult::EStateQuit:
 		m_endGame = true;
 		break;
-	//case Continue:
-	//	break;
+	case StateResult::EStateContinue:
+		break;
 	}
 	return m_endGame;
 }
@@ -64,9 +66,9 @@ void Engine::Update()
 	{
 		HandleGameState();
 		m_gameState->Update();
-		Renderer::Get().Update();
+		EventManager::PollEvents(Renderer::Get().Window());
 		m_endGame = !Renderer::Get().Active();
-	}
 
+	}
 }
 
