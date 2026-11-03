@@ -10,6 +10,7 @@ class InputManager
 public:
 	~InputManager();
 	static InputManager& Get();
+	void ClearEvents();
 	void OnEvent(const sf::Event& event);
 
 	bool GetKeyDown(sf::Keyboard::Key key);

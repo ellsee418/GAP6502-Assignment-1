@@ -7,7 +7,7 @@ InputManager::InputManager()
 	: m_keysHeld(nullptr), m_mouseButtons(nullptr), m_mouseX(0), m_mouseY(0)
 {
 	m_keysHeld = new int[sf::Keyboard::KeyCount];
-	m_mouseButtons = new int[5] {};
+	m_mouseButtons = new int[sf::Mouse::ButtonCount] {};
 }
 
 InputManager::~InputManager()
@@ -22,10 +22,15 @@ InputManager& InputManager::Get()
 	return sInstance;
 }
 
-void InputManager::OnEvent(const sf::Event& event)
+void InputManager::ClearEvents()
 {
 	m_keyDownEvents.clear();
 	m_keyReleasedEvents.clear();
+}
+
+void InputManager::OnEvent(const sf::Event& event)
+{
+
 
 	switch (event.type)
 	{
@@ -88,8 +93,7 @@ bool InputManager::GetKeyUp(sf::Keyboard::Key key)
 
 bool InputManager::GetKeyHeld(sf::Keyboard::Key key)
 {
-	bool k = m_keysHeld[key];
-	return k;
+	return sf::Keyboard::isKeyPressed(key);
 }
 
 bool InputManager::GetMouseDown(int button)

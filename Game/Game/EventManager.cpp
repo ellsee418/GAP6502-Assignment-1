@@ -5,6 +5,8 @@
 
 bool EventManager::PollEvents(sf::RenderWindow& window)
 {
+	InputManager::Get().ClearEvents();
+
 	if (!window.isOpen()) return false;
 
 	bool windowOpen = true;

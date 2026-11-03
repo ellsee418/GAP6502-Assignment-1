@@ -1,6 +1,7 @@
 #include "GameStates.h"
 #include "Character.h"
 #include "Renderer.h"
+#include "InputManager.h"
 #include <stdio.h>
 
 // ------------------------------ GAME STATE ------------------------------ \\
@@ -31,6 +32,12 @@ void GameState::Exit()
 StateResult GameState::Update()
 {
 	//printf("GameState::Update() called.\n");
+	if (InputManager::Get().GetKeyHeld(sf::Keyboard::W))
+	{
+		sf::Vector2f pos = m_player->GetPosition();
+		m_player->SetPosition({ pos.x, pos.y - 1 });
+		printf("moving player\n");
+	}
 
 	Renderer::Get().Render(m_entities);// do i want render to be handled here? idk man i dont think so - i dont wanna pass vec to RendererUpdate tho
 
