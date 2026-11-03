@@ -1,5 +1,6 @@
 #include "GameStates.h"
 #include "Character.h"
+#include "Player.h"
 #include "Renderer.h"
 #include "InputManager.h"
 #include <stdio.h>
@@ -49,9 +50,9 @@ void GameState::Init()
 	//printf("GameState::Init() called. Creating Entities.\n");
 
 	for (int i = 0; i < 10; ++i)
-		m_entities.push_back(new Character({ (float)i, (float)i * 60.f }));
+		m_entities.push_back(new Character({ (float)i, (float)i * 60.f }, sf::Color::Red));
 
-	m_player = new Character({ 400.f, 200.f });
+	m_player = new Player({ 400.f, 200.f }, sf::Color::Green);
 	m_entities.push_back(m_player);
 }
 
