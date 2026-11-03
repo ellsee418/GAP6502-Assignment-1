@@ -37,8 +37,10 @@ void Renderer::Render(std::vector<IEntity*>& vec)
 	for (int i = 0; i < vec.size(); ++i)
 	{
 		sf::CircleShape shape(50.f, 4);
+		shape.setOrigin({ 25.f,25.f });// fix
 		shape.setPosition(vec[i]->GetPosition());
 		shape.setFillColor(sf::Color::Red);
+		shape.setRotation(45.f);
 		m_window->draw(shape);
 	}
 	m_window->display();

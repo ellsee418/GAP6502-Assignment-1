@@ -149,6 +149,7 @@
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="EventManager.cpp" />
     <ClCompile Include="GameStates.cpp" />
+    <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Renderer.cpp" />
   </ItemGroup>
@@ -156,6 +157,7 @@
     <ClInclude Include="Engine.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="EventManager.h" />
+    <ClInclude Include="InputManager.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="GameStates.h" />
   </ItemGroup>

@@ -53,6 +53,7 @@ public:
 	void Init();
 
 	std::vector<IEntity*> m_entities;
+	IEntity* m_player;
 private:
 
 };

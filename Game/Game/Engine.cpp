@@ -68,7 +68,6 @@ void Engine::Update()
 		m_gameState->Update();
 		EventManager::PollEvents(Renderer::Get().Window());
 		m_endGame = !Renderer::Get().Active();
-
 	}
 }
 

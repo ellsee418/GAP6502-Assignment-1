@@ -5,7 +5,8 @@
 
 // ------------------------------ GAME STATE ------------------------------ \\
 
-GameState::GameState()
+GameState::GameState() 
+	: m_player(nullptr)
 {
 
 }
@@ -17,19 +18,19 @@ GameState::~GameState()
 
 void GameState::Enter()
 {
-	printf("GameState::Enter() called.\n");
+	//printf("GameState::Enter() called.\n");
 	Init();
 }
 
 void GameState::Exit()
 {
-	printf("GameState::Exit() called.\n");
+	//printf("GameState::Exit() called.\n");
 	// cleanup pointers and such
 }
 
 StateResult GameState::Update()
 {
-	printf("GameState::Update() called.\n");
+	//printf("GameState::Update() called.\n");
 
 	Renderer::Get().Render(m_entities);// do i want render to be handled here? idk man i dont think so - i dont wanna pass vec to RendererUpdate tho
 
@@ -38,10 +39,13 @@ StateResult GameState::Update()
 
 void GameState::Init()
 {
-	printf("GameState::Init() called. Creating Entities.\n");
+	//printf("GameState::Init() called. Creating Entities.\n");
 
 	for (int i = 0; i < 10; ++i)
-		m_entities.push_back(new Character({ (float)i * 60.f, (float)i * 60.f }));
+		m_entities.push_back(new Character({ (float)i, (float)i * 60.f }));
+
+	m_player = new Character({ 400.f, 200.f });
+	m_entities.push_back(m_player);
 }
 
 
@@ -57,19 +61,19 @@ MenuState::~MenuState()
 
 void MenuState::Enter()
 {
-	printf("MenuState::Enter() called.\n");
+	//printf("MenuState::Enter() called.\n");
 	Init();
 }
 
 void MenuState::Exit()
 {
-	printf("MenuState::Exit() called.\n");
+	//printf("MenuState::Exit() called.\n");
 	// cleanup pointers and such
 }
 
 StateResult MenuState::Update()
 {
-	printf("MenuState::Exit() called.\n");
+	//printf("MenuState::Exit() called.\n");
 
 	static int countTo1000 = 0;
 

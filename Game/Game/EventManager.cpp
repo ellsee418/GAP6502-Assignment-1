@@ -1,4 +1,7 @@
 #include "EventManager.h"
+#include <SFML/Graphics.hpp>
+#include "InputManager.h"
+
 
 bool EventManager::PollEvents(sf::RenderWindow& window)
 {
@@ -15,7 +18,14 @@ bool EventManager::PollEvents(sf::RenderWindow& window)
 			continue;
 		}
 		// send event to input manager etc.
+		Dispatch(event);
 	}
 	// successfully polled events on window that is not closed
 	return windowOpen;
+}
+
+void EventManager::Dispatch(const sf::Event& event)
+{
+	if (event.type == sf::Event::KeyPressed || event.type == sf::Event::KeyReleased)
+		InputManager::OnEvent(event);
 }
