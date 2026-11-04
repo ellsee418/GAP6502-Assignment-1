@@ -36,7 +36,10 @@ StateResult GameState::Update()
 	//printf("GameState::Update() called.\n");
 	m_player->Move(GetInputDirection());
 
-	Renderer::Get().Render(m_entities);// do i want render to be handled here? idk man i dont think so - i dont wanna pass vec to RendererUpdate tho
+	for (IEntity* e : m_entities)
+		e->Update();
+
+	Renderer::Get().Render(m_entities);// do i want render to be handled here?
 
 	return StateResult::EStateContinue;
 }

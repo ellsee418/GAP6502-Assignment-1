@@ -1,7 +1,8 @@
 #include "Character.h"
+#include "Math.hpp"
 
 Character::Character(sf::Vector2f pos, sf::Color col, float size, int points, float angle) 
-    : m_pos(pos), m_active(true), m_colour(col), m_size(size), m_points(points), m_angle(angle)
+    : m_pos(pos), m_active(true), m_colour(col), m_size(size), m_points(points), m_angle(angle), m_speed(2.f)
 {
 }
 
@@ -25,9 +26,19 @@ void Character::Kill()
     m_active = false;
 }
 
+void Character::Update()
+{
+    m_angle += m_speed;
+}
+
 float Character::Angle()
 {
     return m_angle;
+}
+
+void Character::SetAngle(float angle)
+{
+    m_angle = angle;
 }
 
 sf::Color Character::Colour()
@@ -43,4 +54,18 @@ float Character::Size()
 int Character::Points()
 {
     return m_points;
+}
+
+float Character::Speed()
+{
+    return m_speed;
+}
+
+void Character::Move(sf::Vector2f dir)
+{
+    if (Length(dir) > 0.f)
+        dir = Normalize(dir);
+
+    m_pos.x += dir.x * m_speed;
+    m_pos.y += dir.y * m_speed;
 }

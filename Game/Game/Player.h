@@ -2,7 +2,7 @@
 #include "Character.h"
 #include "Math.hpp"
 
-class Player : public Character
+class Player final : public Character
 {
 public:
 	Player(sf::Vector2f pos, sf::Color col, float size = 50.f, int points = 4, float angle = 45.f);
@@ -10,16 +10,17 @@ public:
 	virtual sf::Vector2f GetPosition() override;
 	virtual void SetPosition(sf::Vector2f pos) override;
 
+	void Update() override;
 	bool Active() override;
 	void Kill() override;
 
-	virtual float Angle() override;
-	virtual sf::Color Colour() override;
-	virtual float Size() override;
-	virtual int Points() override;
-	float Speed();
+	float Angle() override;
+	sf::Color Colour() override;
+	float Size() override;
+	int Points() override;
+	float Speed() override;
 
-	void Move(sf::Vector2f dir);
+	void Move(sf::Vector2f dir) override;
 
 private:
 	bool m_active;

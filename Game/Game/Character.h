@@ -12,10 +12,15 @@ public:
 	bool Active() override;
 	void Kill() override;
 
+	virtual void Update() override;
 	virtual float Angle() override;
+	virtual void SetAngle(float angle) override;
 	virtual sf::Color Colour() override;
 	virtual float Size() override;
 	virtual int Points() override;
+	virtual float Speed();
+
+	virtual void Move(sf::Vector2f dir);
 
 private:
 	bool m_active;
@@ -24,4 +29,5 @@ private:
 	float m_size;// fixed for now, add w/l later
 	float m_angle;
 	int m_points;
+	float m_speed;
 };

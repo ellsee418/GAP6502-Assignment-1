@@ -15,6 +15,11 @@ void Player::SetPosition(sf::Vector2f pos)
     m_pos = pos;
 }
 
+void Player::Update()
+{
+    //m_angle += m_speed;
+}
+
 bool Player::Active()
 {
     return m_active;

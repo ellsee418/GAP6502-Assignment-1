@@ -39,7 +39,7 @@ void Renderer::Render(std::vector<IEntity*>& vec)
 	{
 		auto& e = vec[i];
 		sf::CircleShape shape(e->Size(), e->Points());
-		shape.setOrigin({ e->Size() / 2, e->Size() / 2});
+		shape.setOrigin({ e->Size() , e->Size() });
 		shape.setPosition(e->GetPosition());
 		shape.setFillColor(e->Colour());
 		shape.setRotation(e->Angle());

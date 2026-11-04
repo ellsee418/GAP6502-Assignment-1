@@ -15,6 +15,11 @@ void Entity::SetPosition(sf::Vector2f pos)
     m_pos = pos;
 }
 
+void Entity::Update()
+{
+    m_angle++;
+}
+
 bool Entity::Active()
 {
     return m_active;
@@ -28,6 +33,11 @@ void Entity::Kill()
 float Entity::Angle()
 {
     return m_angle;
+}
+
+void Entity::SetAngle(float angle)
+{
+    m_angle = angle;
 }
 
 sf::Color Entity::Colour()

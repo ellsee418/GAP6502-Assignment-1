@@ -1,3 +1,4 @@
+#include "Math.hpp"
 #include "Engine.h"
 #include "Renderer.h"
 #include "EventManager.h"
@@ -5,6 +6,7 @@
 Engine::Engine() 
 	: m_gameState(new GameState)
 {
+	InitRand();
 	m_gameState->Enter();
 }
 
