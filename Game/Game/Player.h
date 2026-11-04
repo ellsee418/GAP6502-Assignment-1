@@ -5,7 +5,7 @@
 class Player final : public Character
 {
 public:
-	Player(sf::Vector2f pos, sf::Color col, float size = 50.f, int points = 4, float angle = 45.f);
+	Player(sf::Vector2f pos, sf::Color col, float size = 25.f, int points = 4, float angle = 45.f);
 
 	virtual sf::Vector2f GetPosition() override;
 	virtual void SetPosition(sf::Vector2f pos) override;

@@ -5,7 +5,7 @@
 class Enemy : public Character
 {
 public:
-	Enemy(sf::Vector2f pos = { 0.f, 0.f }, sf::Color col = sf::Color::Red, float size = 30.f, int points = 3, float angle = 0.f);
+	Enemy(sf::Vector2f pos = { 0.f, 0.f }, sf::Color col = sf::Color::Red, float size = 20.f, int points = 3, float angle = 0.f);
 	~Enemy();
 	virtual sf::Vector2f GetPosition() override;
 	virtual void SetPosition(sf::Vector2f pos) override;

@@ -3,6 +3,7 @@
 #include "Player.h"
 #include "Renderer.h"
 #include "InputManager.h"
+#include "Collision.hpp"
 
 #include <stdio.h>
 
@@ -36,7 +37,10 @@ StateResult GameState::Update()
 {
 	//printf("GameState::Update() called.\n");
 	for (IEntity* e : m_entities)
+	{
 		e->Update();
+		HandleCollidingBounds(e);
+	}
 
 	Renderer::Get().Render(m_entities);// do i want render to be handled here?
 
