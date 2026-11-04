@@ -5,6 +5,7 @@
 class IEntity
 {
 public:
+	virtual ~IEntity() = default;
 	virtual sf::Vector2f GetPosition() = 0;
 	virtual void SetPosition(sf::Vector2f pos) = 0;
 

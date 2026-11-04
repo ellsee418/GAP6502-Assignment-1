@@ -54,7 +54,6 @@ public:
 	StateResult Update() override;
 
 	void Init();
-	sf::Vector2f GetInputDirection();
 
 	std::vector<IEntity*> m_entities;
 	Player* m_player;

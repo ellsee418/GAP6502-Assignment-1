@@ -10,21 +10,21 @@ inline float Length(const sf::Vector2f& vec) { return std::sqrtf(vec.x * vec.x +
 inline sf::Vector2f Normalize(const sf::Vector2f& vec) { return vec / Length(vec); }
 
 // https://www.geeksforgeeks.org/cpp/generate-a-random-float-number-in-cpp/
-inline int randomInt(int a, int b)
+inline int RandomInt(int a, int b)
 {
     if (a > b)
-        return randomInt(b, a);
+        return RandomInt(b, a);
     if (a == b)
         return a;
     return a + (rand() % (b - a));
 }
 
-inline float randomFloat(int a, int b)
+inline float RandomFloat(int a, int b)
 {
     if (a > b)
-        return randomFloat(b, a);
+        return RandomFloat(b, a);
     if (a == b)
         return a;
 
-    return (float)randomInt(a, b) + (float)(rand()) / (float)(RAND_MAX);
+    return (float)RandomInt(a, b) + (float)(rand()) / (float)(RAND_MAX);
 }

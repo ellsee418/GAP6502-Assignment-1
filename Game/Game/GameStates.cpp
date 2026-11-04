@@ -34,8 +34,6 @@ void GameState::Exit()
 StateResult GameState::Update()
 {
 	//printf("GameState::Update() called.\n");
-	m_player->Move(GetInputDirection());
-
 	for (IEntity* e : m_entities)
 		e->Update();
 
@@ -54,24 +52,6 @@ void GameState::Init()
 	m_player = new Player({ 400.f, 200.f }, sf::Color::Green);
 	m_entities.push_back(m_player);
 }
-
-sf::Vector2f GameState::GetInputDirection()
-{
-	// this feels weird having this here but it wont be used in any other state.
-	// just feels wrong idk
-	sf::Vector2f dir = { 0.f, 0.f };
-	if (InputManager::Get().GetKeyHeld(sf::Keyboard::S))
-		dir.y += 1;
-	if (InputManager::Get().GetKeyHeld(sf::Keyboard::W))
-		dir.y -= 1;
-	if (InputManager::Get().GetKeyHeld(sf::Keyboard::D))
-		dir.x += 1;
-	if (InputManager::Get().GetKeyHeld(sf::Keyboard::A))
-		dir.x -= 1;
-
-	return dir;
-}
-
 
 // ------------------------------ MENU STATE ------------------------------ \\
 
