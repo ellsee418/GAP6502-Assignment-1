@@ -18,7 +18,7 @@ void Player::SetPosition(sf::Vector2f pos)
 
 void Player::Update()
 {
-    Move(GetDirection());
+    Move();
 }
 
 bool Player::Active()
@@ -71,8 +71,10 @@ sf::Vector2f Player::GetDirection()
     return dir;
 }
 
-void Player::Move(sf::Vector2f dir)
+void Player::Move()
 {
+    sf::Vector2f dir = GetDirection();
+
     if (Length(dir) > 0.f)
         dir = Normalize(dir);
 

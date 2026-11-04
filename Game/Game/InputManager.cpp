@@ -1,8 +1,5 @@
 #include "InputManager.h"
 
-// static member definitions
-
-
 InputManager::InputManager()
 	: m_keysHeld(nullptr), m_mouseButtons(nullptr), m_mouseX(0), m_mouseY(0)
 {
@@ -30,8 +27,6 @@ void InputManager::ClearEvents()
 
 void InputManager::OnEvent(const sf::Event& event)
 {
-
-
 	switch (event.type)
 	{
 		case sf::Event::KeyPressed:
@@ -68,7 +63,6 @@ void InputManager::OnEvent(const sf::Event& event)
 			break;
 		}
 	}
-
 }
 
 bool InputManager::GetKeyDown(sf::Keyboard::Key key)

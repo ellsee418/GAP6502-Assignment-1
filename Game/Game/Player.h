@@ -20,8 +20,8 @@ public:
 	int Points() override;
 	float Speed() override;
 
-	sf::Vector2f GetDirection() override;
-	void Move(sf::Vector2f dir) override;
+	sf::Vector2f GetDirection();
+	void Move() override;
 
 private:
 	bool m_active;

@@ -28,9 +28,7 @@ void Character::Kill()
 
 void Character::Update()
 {
-    m_angle += m_speed;
-
-    Move(GetDirection());
+    Move();
 }
 
 float Character::Angle()
@@ -63,16 +61,12 @@ float Character::Speed()
     return m_speed;
 }
 
-sf::Vector2f Character::GetDirection()
+void Character::Move()
 {
     float x = RandomFloat(-1, 1) * m_speed;
     float y = RandomFloat(-1, 1) * m_speed;
+    sf::Vector2f dir = { x,y };
 
-    return sf::Vector2f(x, y);
-}
-
-void Character::Move(sf::Vector2f dir)
-{
     if (Length(dir) > 0.f)
         dir = Normalize(dir);
 

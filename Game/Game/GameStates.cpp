@@ -1,5 +1,5 @@
 #include "GameStates.h"
-#include "Character.h"
+#include "Enemy.h"
 #include "Player.h"
 #include "Renderer.h"
 #include "InputManager.h"
@@ -16,7 +16,8 @@ GameState::GameState()
 
 GameState::~GameState()
 {
-
+	for (IEntity* e : m_entities)
+		if (e) delete e;
 }
 
 void GameState::Enter()
@@ -47,7 +48,7 @@ void GameState::Init()
 	//printf("GameState::Init() called. Creating Entities.\n");
 
 	for (int i = 0; i < 10; ++i)
-		m_entities.push_back(new Character({ (float)i, (float)i * 60.f }, sf::Color::Red));
+		m_entities.push_back(new Enemy({ (float)i, (float)i * 60.f }, sf::Color::Red));// delete plz
 
 	m_player = new Player({ 400.f, 200.f }, sf::Color::Green);
 	m_entities.push_back(m_player);
