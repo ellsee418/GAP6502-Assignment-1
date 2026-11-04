@@ -10,10 +10,11 @@ public:
 	virtual sf::Vector2f GetPosition() override;
 	virtual void SetPosition(sf::Vector2f pos) override;
 
+	virtual void Update() override;
 	bool Active() override;
 	void Kill() override;
+	bool Collides() override;
 
-	virtual void Update() override;
 	virtual float Angle() override;
 	virtual void SetAngle(float angle) override;
 	virtual sf::Color Colour() override;
@@ -25,7 +26,7 @@ public:
 	virtual void Move() override;
 
 private:
-	bool m_active;
+	bool m_active, m_collides;
 	sf::Vector2f m_pos;
 	sf::Color m_colour;
 	float m_size;// fixed for now, add w/l later

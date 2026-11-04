@@ -1,7 +1,8 @@
 #include "Renderer.h"
 #include "EventManager.h"
+#include "common.h"
 
-Renderer::Renderer(unsigned int width = 800, unsigned int height = 600)
+Renderer::Renderer(unsigned int width = WIN_WIDTH, unsigned int height = WIN_HEIGHT)
 	: m_window(nullptr)
 {
 	m_window = new sf::RenderWindow(sf::VideoMode({ width, height }), "fortnite");

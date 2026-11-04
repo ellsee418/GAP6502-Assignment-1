@@ -12,6 +12,7 @@ public:
 	virtual void Update() = 0;
 	virtual bool Active() = 0;
 	virtual void Kill() = 0;
+	virtual bool Collides() = 0;
 
 	virtual float Angle() = 0;
 	virtual void SetAngle(float angle) = 0;
@@ -33,6 +34,7 @@ public:
 	virtual void Update() override;
 	bool Active() override;
 	void Kill() override;
+	virtual bool Collides() override;
 
 	virtual float Angle() override;
 	virtual void SetAngle(float angle) override;
@@ -40,7 +42,7 @@ public:
 	virtual float Size() override;
 	virtual int Points() override;
 private:
-	bool m_active;
+	bool m_active, m_collides;
 	sf::Vector2f m_pos;
 	sf::Color m_colour;
 	float m_size;// fixed for now, add w/l later

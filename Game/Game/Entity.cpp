@@ -1,7 +1,7 @@
 #include "Entity.h"
 
 Entity::Entity(sf::Vector2f pos, sf::Color col, float size, int points, float angle)
-: m_active(true), m_colour(col), m_size(size), m_points(points), m_angle(angle)
+: m_active(true), m_colour(col), m_size(size), m_points(points), m_angle(angle), m_collides(false)
 {
 }
 
@@ -28,6 +28,11 @@ bool Entity::Active()
 void Entity::Kill()
 {
     m_active = false;
+}
+
+bool Entity::Collides()
+{
+    return m_collides;
 }
 
 float Entity::Angle()

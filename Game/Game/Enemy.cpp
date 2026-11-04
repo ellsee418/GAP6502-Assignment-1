@@ -3,7 +3,7 @@
 
 Enemy::Enemy(sf::Vector2f pos, sf::Color col, float size, int points, float angle)
 	: Character(pos, col, size, points, angle), m_pos(pos), m_active(true), m_colour(col), m_size(size), 
-    m_points(points), m_angle(angle), m_speed(2.f), m_directionTimer(nullptr), m_nextTurnTime(RandomFloat(0,2))
+    m_points(points), m_angle(angle), m_speed(2.f), m_directionTimer(nullptr), m_nextTurnTime(RandomFloat(0,2)), m_collides(true)
 {
     m_directionTimer = new Timer();
 }
@@ -31,6 +31,11 @@ bool Enemy::Active()
 void Enemy::Kill()
 {
     m_active = false;
+}
+
+bool Enemy::Collides()
+{
+    return m_collides;
 }
 
 void Enemy::Update()
@@ -79,6 +84,7 @@ void Enemy::HandleMovementDirection()
     m_nextTurnTime = RandomFloat(0, 3);
     m_directionTimer->Reset();
 }
+
 void Enemy::Move()
 {
     sf::Vector2f dir = { 0.f,0.f };

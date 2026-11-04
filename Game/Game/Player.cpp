@@ -2,7 +2,7 @@
 #include "InputManager.h"
 
 Player::Player(sf::Vector2f pos, sf::Color col, float size, int points, float angle)
-    : Character(pos, col, size, points), m_pos(pos), m_active(true), m_colour(col), m_size(size), m_points(points), m_angle(angle), m_speed(5.f)
+    : Character(pos, col, size, points), m_pos(pos), m_active(true), m_colour(col), m_size(size), m_points(points), m_angle(angle), m_speed(5.f), m_collides(true)
 {
 }
 
@@ -29,6 +29,11 @@ bool Player::Active()
 void Player::Kill()
 {
     m_active = false;
+}
+
+bool Player::Collides()
+{
+    return m_collides;
 }
 
 float Player::Angle()

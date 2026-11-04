@@ -13,6 +13,7 @@ public:
 	void Update() override;
 	bool Active() override;
 	void Kill() override;
+	bool Collides() override;
 
 	float Angle() override;
 	sf::Color Colour() override;
@@ -24,7 +25,7 @@ public:
 	void Move() override;
 
 private:
-	bool m_active;
+	bool m_active, m_collides;
 	sf::Vector2f m_pos;
 	sf::Color m_colour;
 	float m_size;// fixed for now, add w/l later

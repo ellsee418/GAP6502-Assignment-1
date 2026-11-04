@@ -2,7 +2,7 @@
 #include "Math.hpp"
 
 Character::Character(sf::Vector2f pos, sf::Color col, float size, int points, float angle) 
-    : m_pos(pos), m_active(true), m_colour(col), m_size(size), m_points(points), m_angle(angle), m_speed(2.f)
+    : m_pos(pos), m_active(true), m_colour(col), m_size(size), m_points(points), m_angle(angle), m_speed(2.f), m_collides(true)
 {
 }
 
@@ -24,6 +24,11 @@ bool Character::Active()
 void Character::Kill()
 {
     m_active = false;
+}
+
+bool Character::Collides()
+{
+    return m_collides;
 }
 
 void Character::Update()

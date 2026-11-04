@@ -158,6 +158,8 @@
     <ClCompile Include="Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Collision.hpp" />
+    <ClInclude Include="common.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="Character.h" />
