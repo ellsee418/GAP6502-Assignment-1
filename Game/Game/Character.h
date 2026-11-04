@@ -1,27 +1,7 @@
 #pragma once
-#include <SFML/System/Vector2.hpp>
-#include <SFML/System/Vector3.hpp>
-#include <SFML/Graphics/Color.hpp>
+#include "Entity.h"
 
-
-
-class IEntity
-{
-public:
-	virtual sf::Vector2f GetPosition() = 0;
-	virtual void SetPosition(sf::Vector2f pos) = 0;
-
-	virtual bool Active() = 0;
-	virtual void Kill() = 0;
-	virtual float Angle() = 0;
-	virtual sf::Color Colour() = 0;
-	virtual float Size() = 0;
-	virtual int Points() = 0;
-private:
-
-};
-
-class Character : public IEntity
+class Character : public Entity
 {
 public:
 	Character(sf::Vector2f pos = {0.f, 0.f}, sf::Color col = sf::Color::Red, float size = 30.f, int points = 3, float angle = 0.f);
