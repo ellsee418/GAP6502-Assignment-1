@@ -45,7 +45,8 @@ public:
 	virtual sf::Color Colour() override;
 	virtual float Size() override;
 	virtual int Points() override;
-private:
+
+protected:
 	bool m_active, m_collides;
 	sf::Vector2f m_pos;
 	sf::Color m_colour;

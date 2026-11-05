@@ -1,7 +1,7 @@
 #include "Entity.h"
 
 Entity::Entity(sf::Vector2f pos, sf::Color col, float size, int points, float angle)
-: m_active(true), m_colour(col), m_size(size), m_points(points), m_angle(angle), m_collides(false), m_velocity({0,0})
+: m_active(true), m_colour(col), m_size(size), m_points(points), m_angle(angle), m_collides(false), m_velocity({0.f,0.f})
 {
 }
 

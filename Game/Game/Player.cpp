@@ -2,63 +2,17 @@
 #include "InputManager.h"
 
 Player::Player(sf::Vector2f pos, sf::Color col, float size, int points, float angle)
-    : Character(pos, col, size, points), m_pos(pos), m_active(true), m_colour(col), m_size(size), m_points(points), m_angle(angle), m_speed(5.f), m_collides(true)
+    : Character(pos, col, size, points)
 {
-}
-
-sf::Vector2f Player::GetPosition()
-{
-    return m_pos;
-}
-
-void Player::SetPosition(sf::Vector2f pos)
-{
+    m_angle = angle;
+    m_size = size;
+    m_speed = 5.f;
     m_pos = pos;
 }
 
 void Player::Update()
 {
     Move();
-}
-
-bool Player::Active()
-{
-    return m_active;
-}
-
-void Player::Kill()
-{
-    m_active = false;
-}
-
-bool Player::Collides()
-{
-    return m_collides;
-}
-
-float Player::Angle()
-{
-    return m_angle;
-}
-
-sf::Color Player::Colour()
-{
-    return m_colour;
-}
-
-float Player::Size()
-{
-    return m_size;
-}
-
-int Player::Points()
-{
-    return m_points;
-}
-
-float Player::Speed()
-{
-    return m_speed;
 }
 
 sf::Vector2f Player::GetDirection()

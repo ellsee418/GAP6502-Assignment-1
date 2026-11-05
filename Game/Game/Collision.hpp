@@ -35,7 +35,6 @@ inline void HandleCollidingEntity(IEntity* entity, IEntity* other)
 
 inline void HandleCollidingBounds(IEntity* entity)
 {
-	// add velocity
 	sf::Vector2f pos = entity->GetPosition();
 	float size = entity->Size();
 	float minX, minY, maxX, maxY;
