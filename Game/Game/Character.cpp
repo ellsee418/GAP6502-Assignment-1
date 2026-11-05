@@ -16,50 +16,50 @@ void Character::SetPosition(sf::Vector2f pos)
     m_pos = pos;
 }
 
-bool Character::Active()
-{
-    return m_active;
-}
-
-void Character::Kill()
-{
-    m_active = false;
-}
-
-bool Character::Collides()
-{
-    return m_collides;
-}
-
-void Character::Update()
-{
-    Move();
-}
-
-float Character::Angle()
-{
-    return m_angle;
-}
-
-void Character::SetAngle(float angle)
-{
-    m_angle = angle;
-}
-
-sf::Color Character::Colour()
-{
-    return m_colour;
-}
-
-float Character::Size()
-{
-    return m_size;
-}
-
-int Character::Points()
-{
-    return m_points;
-}
+//bool Character::Active()
+//{
+//    return m_active;
+//}
+//
+//void Character::Kill()
+//{
+//    m_active = false;
+//}
+//
+//bool Character::Collides()
+//{
+//    return m_collides;
+//}
+//
+//void Character::Update()
+//{
+//    Move();
+//}
+//
+//float Character::Angle()
+//{
+//    return m_angle;
+//}
+//
+//void Character::SetAngle(float angle)
+//{
+//    m_angle = angle;
+//}
+//
+//sf::Color Character::Colour()
+//{
+//    return m_colour;
+//}
+//
+//float Character::Size()
+//{
+//    return m_size;
+//}
+//
+//int Character::Points()
+//{
+//    return m_points;
+//}
 
 float Character::Speed()
 {

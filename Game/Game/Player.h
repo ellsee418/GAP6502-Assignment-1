@@ -32,4 +32,6 @@ private:
 	int m_points;
 	float m_angle;
 	float m_speed;
+	sf::Vector2f m_velocity;
+
 };

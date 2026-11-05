@@ -39,9 +39,10 @@ StateResult GameState::Update()
 	for (IEntity* e : m_entities)
 	{
 		e->Update();
-		HandleCollidingBounds(e);
+		if(e == m_player)HandleCollidingBounds(e);
+		HandleCollidingEntity(m_player, e);
 	}
-
+	printf("%d, %d",m_player->Velocity().x , m_player->Velocity().y);
 	Renderer::Get().Render(m_entities);// do i want render to be handled here?
 
 	return StateResult::EStateContinue;

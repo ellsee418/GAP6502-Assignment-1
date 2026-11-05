@@ -16,6 +16,8 @@ public:
 
 	virtual float Angle() = 0;
 	virtual void SetAngle(float angle) = 0;
+	virtual sf::Vector2f Velocity() = 0;
+	virtual void SetVelocity(sf::Vector2f vel) = 0;
 	virtual sf::Color Colour() = 0;
 	virtual float Size() = 0;
 	virtual int Points() = 0;
@@ -38,6 +40,8 @@ public:
 
 	virtual float Angle() override;
 	virtual void SetAngle(float angle) override;
+	sf::Vector2f Velocity() override;
+	void SetVelocity(sf::Vector2f vel) override;
 	virtual sf::Color Colour() override;
 	virtual float Size() override;
 	virtual int Points() override;
@@ -48,4 +52,5 @@ private:
 	float m_size;// fixed for now, add w/l later
 	float m_angle;
 	int m_points;
+	sf::Vector2f m_velocity;
 };

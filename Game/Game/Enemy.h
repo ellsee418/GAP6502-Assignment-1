@@ -34,6 +34,8 @@ private:
 	int m_points;
 	float m_speed;
 	float m_nextTurnTime;
+	sf::Vector2f m_velocity;
+
 
 	Timer* m_directionTimer;
 };
