@@ -39,6 +39,7 @@ void Renderer::Render(std::vector<IEntity*>& vec)
 	for (int i = 0; i < vec.size(); ++i)
 	{
 		auto& e = vec[i];
+		if (!e->ShouldDraw()) continue;
 		sf::CircleShape shape(e->Size(), e->Points());
 		shape.setOrigin({ e->Size() , e->Size() });
 		shape.setPosition(e->GetPosition());
@@ -48,6 +49,13 @@ void Renderer::Render(std::vector<IEntity*>& vec)
 	}
 	m_window->display();
 
+}
+
+void Renderer::Render(sf::Text& txt)
+{
+	m_window->clear(sf::Color::Red);
+	m_window->draw(txt);
+	m_window->display();
 }
 
 bool Renderer::Active()

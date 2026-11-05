@@ -29,7 +29,10 @@ inline bool IsCollidingEntity(IEntity* entity, IEntity* other)
 inline void HandleCollidingEntity(IEntity* entity, IEntity* other)
 {
 	if (!IsCollidingEntity(entity, other)) return;
+	
 	printf("collision\n");
+	entity->OnEntityCollision(other);
+	other->OnEntityCollision(entity);
 }
 
 inline void HandleCollidingBounds(IEntity* entity)

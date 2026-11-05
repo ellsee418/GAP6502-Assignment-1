@@ -9,6 +9,8 @@ public:
 	void Update();
 	void RenderTest();
 	void Render(std::vector<IEntity*>& vec);
+	void Render(sf::Text& txt);
+
 
 	bool Active();
 	sf::RenderWindow& Window() const;

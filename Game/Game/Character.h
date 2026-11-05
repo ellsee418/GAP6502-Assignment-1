@@ -10,6 +10,11 @@ public:
 	virtual float Speed();
 	virtual void Move();
 
+	virtual int GetHealth();
+	virtual void TakeDamage(int dmg);
+	virtual void AddHealth(int hp);// in case of healing item
+	virtual void OnDeath();
 protected:
 	float m_speed;
+	int m_health;
 };

@@ -8,6 +8,7 @@ Player::Player(sf::Vector2f pos, sf::Color col, float size, int points, float an
     m_size = size;
     m_speed = 5.f;
     m_pos = pos;
+    m_type = EntityType::Player;
 }
 
 sf::Vector2f Player::GetDirection()
@@ -34,4 +35,15 @@ void Player::Move()
 
     m_velocity = sf::Vector2f(dir.x * m_speed, dir.y * m_speed);
     m_pos += m_velocity;
+}
+
+void Player::OnEntityCollision(IEntity* other)
+{
+    EntityType type = other->Type();
+    if (type == m_type) return;
+    if (type == EntityType::Enemy)
+    {
+        TakeDamage(20);
+        printf("player hit. health: %d\n", m_health);
+    }
 }

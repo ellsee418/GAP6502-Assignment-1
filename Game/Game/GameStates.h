@@ -2,6 +2,8 @@
 
 #include <vector>
 #include <SFML/System/Vector2.hpp>
+#include <SFML/Graphics/Text.hpp>
+#include <SFML/Graphics/Font.hpp>
 
 
 class IEntity;
@@ -55,8 +57,26 @@ public:
 
 	void Init();
 
+
+private:
 	std::vector<IEntity*> m_entities;
 	Player* m_player;
-private:
+};
 
+class GameOverState : public IState
+{
+public:
+	GameOverState();
+	~GameOverState() override;
+
+	void Enter() override;
+	void Exit() override;
+	StateResult Update() override;
+
+	void Init();
+
+
+private:
+	sf::Font m_font;
+	sf::Text* m_text;
 };

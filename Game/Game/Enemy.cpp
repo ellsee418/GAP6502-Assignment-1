@@ -8,6 +8,7 @@ Enemy::Enemy(sf::Vector2f pos, sf::Color col, float size, int points, float angl
     m_size = size;
     m_speed = 2.f;
     m_pos = pos;
+    m_type = EntityType::Enemy;
 
     m_directionTimer = new Timer();
 }
@@ -51,4 +52,11 @@ void Enemy::Move()
 void Enemy::OnBoundsCollision()
 {
     SetAngle(RandomFloat(0, 360));
+}
+
+void Enemy::OnEntityCollision(IEntity* other)
+{
+    if (other->Type() == m_type) return;
+
+    TakeDamage(100);
 }

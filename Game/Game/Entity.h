@@ -1,6 +1,9 @@
 #pragma once
+#include "common.h"
 #include <SFML/System/Vector2.hpp>
 #include <SFML/Graphics/Color.hpp>
+
+enum class EntityType {Entity, Character, Player, Enemy};
 
 class IEntity
 {
@@ -11,6 +14,8 @@ public:
 	virtual bool			Active() = 0;
 	virtual void			Kill() = 0;
 	virtual bool			Collides() = 0;
+	virtual bool			ShouldDraw() = 0;
+	virtual EntityType		Type() = 0;
 	virtual float			Size() = 0;
 	virtual int				Points() = 0;
 
@@ -24,6 +29,7 @@ public:
 	virtual void			SetColour(sf::Color col) = 0;
 
 	virtual void			OnBoundsCollision() = 0;
+	virtual void			OnEntityCollision(IEntity* other) = 0;
 private:
 
 };
@@ -37,6 +43,8 @@ public:
 			bool			Active() override;
 			void			Kill() override;
 	virtual bool			Collides() override;
+	virtual bool			ShouldDraw() override;
+	virtual EntityType		Type() override;
 	virtual float			Size() override;
 	virtual int				Points() override;
 
@@ -49,13 +57,16 @@ public:
 	virtual sf::Color		GetColour() override;
 	virtual void			SetColour(sf::Color col) override;
 
-	virtual void			OnBoundsCollision() {};
+	virtual void			OnBoundsCollision() override {};
+	virtual void			OnEntityCollision(IEntity* other) override {};
+
 protected:
-	bool			m_active, m_collides;
+	bool			m_active, m_collides, m_draw;
 	sf::Vector2f	m_pos;
 	sf::Color		m_colour;
 	float			m_size;// fixed for now, add w/l later
 	float			m_angle;
 	int				m_points;
 	sf::Vector2f	m_velocity;
+	EntityType		m_type;
 };

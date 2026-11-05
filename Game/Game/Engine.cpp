@@ -26,9 +26,9 @@ bool Engine::HandleGameState()
 	case StateResult::EStateMenu:
 		ChangeState(new MenuState);
 		break;
-	//case StateResult::StateGameOver:
-	//	ChangeState(new GameOverState);
-	//	break;
+	case StateResult::EStateGameOver:
+		ChangeState(new GameOverState);
+		break;
 	case StateResult::EStateQuit:
 		m_endGame = true;
 		break;

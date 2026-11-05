@@ -13,6 +13,7 @@ public:
 	virtual void Move() override;
 
 	virtual void OnBoundsCollision() override;
+	virtual void OnEntityCollision(IEntity* other) override;
 private:
 
 protected:
