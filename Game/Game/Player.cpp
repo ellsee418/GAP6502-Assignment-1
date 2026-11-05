@@ -32,6 +32,6 @@ void Player::Move()
     if (Length(dir) > 0.f)
         dir = Normalize(dir);
 
-    m_pos.x += dir.x * m_speed;
-    m_pos.y += dir.y * m_speed;
+    m_velocity = sf::Vector2f(dir.x * m_speed, dir.y * m_speed);
+    m_pos += m_velocity;
 }

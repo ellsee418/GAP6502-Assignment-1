@@ -29,43 +29,37 @@ inline bool IsCollidingEntity(IEntity* entity, IEntity* other)
 inline void HandleCollidingEntity(IEntity* entity, IEntity* other)
 {
 	if (!IsCollidingEntity(entity, other)) return;
-
 	printf("collision\n");
 }
 
 inline void HandleCollidingBounds(IEntity* entity)
 {
+	// better but not great lol
 	sf::Vector2f pos = entity->GetPosition();
+	sf::Vector2f vel = entity->GetVelocity();
 	float size = entity->Size();
 	float minX, minY, maxX, maxY;
 
 	minX = pos.x - size; minY = pos.y - size;
 	maxX = pos.x + size; maxY = pos.y + size;
 	
+	bool collided = false;
+	if (minX < 0 || maxX > WIN_WIDTH)
+	{
+		collided = true;
+		vel.x *= -1;
+	}
 
-	if (minX < 0)
-		pos.x = size;
+	if (minY < 0 || maxY > WIN_HEIGHT)
+	{
+		collided = true;
+		vel.y *= -1;
+	}
 
-	if (pos.x > WIN_WIDTH - size)
-		pos.x = WIN_WIDTH - size;
+	if (collided) entity->OnBoundsCollision();
+	entity->SetVelocity(vel);
 
-	if (pos.y < 0 + size)
-		pos.y = size;
-
-	if (pos.y > WIN_HEIGHT - size)
-		pos.y = WIN_HEIGHT - size;
-
-	//if (pos.x < 0 + size)
-	//	pos.x = size;
-
-	//if (pos.x > WIN_WIDTH - size)
-	//	pos.x = WIN_WIDTH - size;
-
-	//if (pos.y < 0 + size)
-	//	pos.y = size;
-
-	//if (pos.y > WIN_HEIGHT - size)
-	//	pos.y = WIN_HEIGHT - size;
-
-	entity->SetPosition(pos);
+	// always make sure enemies are spawned at least e->Size() away 
+	// from window borders otherwise InitBeyblade()
+	// they do get unstuck eventually but could be outside window
 }

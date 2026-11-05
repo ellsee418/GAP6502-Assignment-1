@@ -4,6 +4,11 @@
 Enemy::Enemy(sf::Vector2f pos, sf::Color col, float size, int points, float angle)
 	: Character(pos, col, size, points, angle), m_directionTimer(nullptr), m_nextTurnTime(RandomFloat(0,2))
 {
+    m_angle = angle;
+    m_size = size;
+    m_speed = 2.f;
+    m_pos = pos;
+
     m_directionTimer = new Timer();
 }
 
@@ -40,6 +45,10 @@ void Enemy::Move()
     if (Length(dir) > 0.f)
         dir = Normalize(dir);
 
-    m_pos.x += dir.x * m_speed;
-    m_pos.y += dir.y * m_speed;
+    m_velocity = sf::Vector2f(dir.x * m_speed, dir.y * m_speed);
+}
+
+void Enemy::OnBoundsCollision()
+{
+    SetAngle(RandomFloat(0, 360));
 }

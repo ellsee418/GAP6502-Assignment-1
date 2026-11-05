@@ -11,6 +11,8 @@ public:
 	virtual void Update() override;
 	virtual void HandleMovementDirection();
 	virtual void Move() override;
+
+	virtual void OnBoundsCollision() override;
 private:
 
 protected:

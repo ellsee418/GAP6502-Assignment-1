@@ -22,6 +22,8 @@ public:
 	virtual void			SetVelocity(sf::Vector2f vel) = 0;
 	virtual sf::Color		GetColour() = 0;
 	virtual void			SetColour(sf::Color col) = 0;
+
+	virtual void			OnBoundsCollision() = 0;
 private:
 
 };
@@ -30,8 +32,6 @@ class Entity : public IEntity
 {
 public:
 	Entity(sf::Vector2f pos = { 0.f, 0.f }, sf::Color col = sf::Color::Red, float size = 30.f, int points = 3, float angle = 0.f);
-
-
 
 	virtual void			Update() override;
 			bool			Active() override;
@@ -48,6 +48,8 @@ public:
 			void			SetVelocity(sf::Vector2f vel) override;
 	virtual sf::Color		GetColour() override;
 	virtual void			SetColour(sf::Color col) override;
+
+	virtual void			OnBoundsCollision() {};
 protected:
 	bool			m_active, m_collides;
 	sf::Vector2f	m_pos;

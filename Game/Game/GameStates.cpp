@@ -40,7 +40,7 @@ StateResult GameState::Update()
 	{
 		e->Update();
 		HandleCollidingBounds(e);
-		HandleCollidingEntity(m_player, e);
+		if(e != m_player) HandleCollidingEntity(m_player, e);
 	}
 	Renderer::Get().Render(m_entities);// do i want render to be handled here?
 

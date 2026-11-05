@@ -12,6 +12,7 @@ Character::Character(sf::Vector2f pos, sf::Color col, float size, int points, fl
 
 void Character::Update()
 {
+    m_pos += m_velocity;
     Move();
 }
 
@@ -29,6 +30,5 @@ void Character::Move()
     if (Length(dir) > 0.f)
         dir = Normalize(dir);
 
-    m_pos.x += dir.x * m_speed;
-    m_pos.y += dir.y * m_speed;
+    m_velocity = sf::Vector2f(dir.x * m_speed, dir.y * m_speed);
 }
