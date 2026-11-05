@@ -10,11 +10,6 @@ Player::Player(sf::Vector2f pos, sf::Color col, float size, int points, float an
     m_pos = pos;
 }
 
-void Player::Update()
-{
-    Move();
-}
-
 sf::Vector2f Player::GetDirection()
 {
     sf::Vector2f dir = { 0.f, 0.f };

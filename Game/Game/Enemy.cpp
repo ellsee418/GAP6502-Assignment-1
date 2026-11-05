@@ -15,7 +15,7 @@ Enemy::~Enemy()
 void Enemy::Update()
 {
     m_directionTimer->Tick();
-    Move();
+    Character::Update();
 }
 
 void Enemy::HandleMovementDirection()
@@ -31,7 +31,7 @@ void Enemy::Move()
 {
     sf::Vector2f dir = { 0.f,0.f };
     HandleMovementDirection();
-    float angle = Angle();
+    float angle = GetAngle();
 
     angle *= (3.14159f / 180.f);
 
