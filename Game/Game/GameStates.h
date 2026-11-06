@@ -8,6 +8,7 @@
 
 class IEntity;
 class Player;
+class Button;
 
 enum class StateResult
 {
@@ -28,23 +29,6 @@ public:
 	virtual ~IState() = default;
 };
 
-class MenuState : public IState
-{
-public:
-	MenuState();
-	~MenuState() override;
-
-	void Enter() override;
-	void Exit() override;
-	StateResult Update() override;
-
-	void Init();
-
-
-private:
-
-};
-
 class GameState : public IState
 {
 public:
@@ -61,6 +45,26 @@ public:
 private:
 	std::vector<IEntity*> m_entities;
 	Player* m_player;
+};
+
+class MenuState : public IState
+{
+public:
+	MenuState();
+	~MenuState() override;
+
+	void Enter() override;
+	void Exit() override;
+	StateResult Update() override;
+
+	void Init();
+
+	void NextState();
+private:
+	sf::Font m_font;
+	Button* m_play;
+	Button* m_quit;
+	std::vector<Button> m_buttons;
 };
 
 class GameOverState : public IState

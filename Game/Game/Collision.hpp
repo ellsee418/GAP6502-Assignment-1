@@ -1,5 +1,6 @@
 #pragma once
 #include "Entity.h"
+#include "Button.h"
 #include "common.h"
 
 // think inline is fine for this. fits the use case.
@@ -24,6 +25,11 @@ inline bool IsCollidingEntity(IEntity* entity, IEntity* other)
 	if (minY > oMaxY || oMinY > maxY) return false;
 
 	return true;
+}
+
+inline bool IsCollidingMouse(sf::Vector2f mousePos, sf::FloatRect bounds)
+{
+	return bounds.contains(mousePos);
 }
 
 inline void HandleCollidingEntity(IEntity* entity, IEntity* other)

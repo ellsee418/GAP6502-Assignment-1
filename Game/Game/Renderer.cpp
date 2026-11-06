@@ -1,12 +1,17 @@
 #include "Renderer.h"
 #include "EventManager.h"
 #include "common.h"
+#include "Button.h"
 
 Renderer::Renderer(unsigned int width = WIN_WIDTH, unsigned int height = WIN_HEIGHT)
 	: m_window(nullptr)
 {
-	m_window = new sf::RenderWindow(sf::VideoMode({ width, height }), "fortnite");
-	m_window->setFramerateLimit(60);
+	Init();
+}
+
+Renderer::~Renderer()
+{
+	delete m_window;// dont think this is necessary
 }
 
 Renderer& Renderer::Get()
@@ -15,21 +20,13 @@ Renderer& Renderer::Get()
 	return sInstance;
 }
 
-void Renderer::Update()
+void Renderer::Init(unsigned int width, unsigned int height)
 {
-
-}
-
-void Renderer::RenderTest()
-{
-	m_window->clear(sf::Color::Black);
-
-	sf::CircleShape shape(50.f, 3);
-	shape.setPosition({ 500.f, 500.f });
-	shape.setFillColor(sf::Color::Green);
-	m_window->draw(shape);
-
-	m_window->display();
+	m_window = new sf::RenderWindow(sf::VideoMode({ width, height }), "fortnite");
+	m_window->setFramerateLimit(60);
+	sf::Image icon;
+	if (icon.loadFromFile("../Assets/fortnite.png"))
+		m_window->setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
 }
 
 void Renderer::Render(std::vector<IEntity*>& vec)
@@ -48,7 +45,6 @@ void Renderer::Render(std::vector<IEntity*>& vec)
 		m_window->draw(shape);
 	}
 	m_window->display();
-
 }
 
 void Renderer::Render(sf::Text& txt)
@@ -57,6 +53,19 @@ void Renderer::Render(sf::Text& txt)
 	m_window->draw(txt);
 	m_window->display();
 }
+
+void Renderer::Render(std::vector<Button>& vec)
+{
+	m_window->clear(sf::Color::Black);
+
+	for (int i = 0; i < vec.size(); ++i)
+	{
+		m_window->draw(vec[i].GetShape());
+		m_window->draw(vec[i].GetText());
+	}
+	m_window->display();
+}
+
 
 bool Renderer::Active()
 {
@@ -67,3 +76,5 @@ sf::RenderWindow& Renderer::Window() const
 {
 	return *m_window;
 }
+
+

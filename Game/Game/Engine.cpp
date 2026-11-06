@@ -4,7 +4,7 @@
 #include "EventManager.h"
 
 Engine::Engine() 
-	: m_gameState(new GameState)
+	: m_gameState(new MenuState)
 {
 	InitRand();
 	m_gameState->Enter();
