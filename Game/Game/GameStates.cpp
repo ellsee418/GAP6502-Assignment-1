@@ -46,6 +46,10 @@ void GameState::Exit()
 
 StateResult GameState::Update()
 {
+	//TODO: add pause
+	if (InputManager::Get().GetKeyDown(sf::Keyboard::Escape))
+		return StateResult::EStateMenu;
+
 	for (IEntity* e : m_entities)
 	{
 		if (!e->Active()) continue;
