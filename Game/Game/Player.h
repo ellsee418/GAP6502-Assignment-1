@@ -13,8 +13,8 @@ public:
 	void Move() override;
 	void OnEntityCollision(IEntity* other) override;
 
-	float GetShootCooldown();
-	void ResetShootCooldown();
+	bool CanShoot() const;
+	void Shoot();
 
 	const float m_shootCooldown = 0.2f;
 private:

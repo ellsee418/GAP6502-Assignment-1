@@ -2,12 +2,11 @@
 #include "Math.hpp"
 
 Projectile::Projectile(sf::Vector2f pos, sf::Vector2f target, sf::Color col, float size, int points, float angle)
-	: Entity(pos, col, size, points, angle), m_speed(6.f)
+	: Entity(pos, col, size, points, angle), m_speed(20.f)
 {
     m_angle = angle;
     m_target = target;
     m_size = size;
-    m_speed = 6.f;
     m_pos = pos;
     m_type = EntityType::Projectile;
     Fire();

@@ -40,11 +40,17 @@ public:
 	StateResult Update() override;
 
 	void Init();
+	StateResult HandleInput();
+	StateResult HandleEntities();
 
+	void TryShoot();
+
+	static bool Continued(StateResult& out, StateResult r);
 
 private:
 	std::vector<IEntity*> m_entities;
 	Player* m_player;
+	int m_score;
 };
 
 class MenuState : public IState
@@ -58,8 +64,6 @@ public:
 	StateResult Update() override;
 
 	void Init();
-
-	void NextState();
 private:
 	sf::Font m_font;
 	Button* m_play;

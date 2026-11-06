@@ -63,13 +63,12 @@ void Player::OnEntityCollision(IEntity* other)
         printf("player hit. health: %d\n", m_health);
     }
 }
-
-float Player::GetShootCooldown()
+bool Player::CanShoot() const
 {
-    return m_shootTimer->GetTotalTime();
+    return m_shootTimer->GetTotalTime() >= m_shootCooldown;
 }
 
-void Player::ResetShootCooldown()
+void Player::Shoot()
 {
     m_shootTimer->Reset();
 }

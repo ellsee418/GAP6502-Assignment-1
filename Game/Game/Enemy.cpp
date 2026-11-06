@@ -58,5 +58,6 @@ void Enemy::OnEntityCollision(IEntity* other)
 {
     if (other->Type() == m_type) return;
 
+
     TakeDamage(100);
 }

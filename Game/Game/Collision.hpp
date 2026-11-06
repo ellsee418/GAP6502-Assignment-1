@@ -36,7 +36,6 @@ inline void HandleCollidingEntity(IEntity* entity, IEntity* other)
 {
 	if (!IsCollidingEntity(entity, other)) return;
 	
-	printf("collision\n");
 	entity->OnEntityCollision(other);
 	other->OnEntityCollision(entity);
 }

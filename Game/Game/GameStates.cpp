@@ -14,7 +14,7 @@
 // ------------------------------ GAME STATE ------------------------------ \\
 
 GameState::GameState() 
-	: m_player(nullptr)
+	: m_player(nullptr), m_score(0)
 {
 
 }
@@ -35,6 +35,44 @@ void GameState::Init()
 	m_entities.push_back(m_player);
 }
 
+StateResult GameState::HandleInput()
+{
+	//TODO: add pause
+	if (InputManager::Get().GetKeyDown(sf::Keyboard::Escape))
+		return StateResult::EStateMenu;
+
+	if (InputManager::Get().GetMouseDown(Mouse::Left))// entity manager?  member function in this?
+		TryShoot();
+	return StateResult::EStateContinue;
+}
+
+StateResult GameState::HandleEntities()
+{
+	for (IEntity* e : m_entities)
+	{
+		if (!e->Active()) continue;
+		e->Update();
+		HandleCollidingBounds(e);
+
+		for (IEntity* o : m_entities)
+		{
+			if (!e->Active() || !o->Active()) continue;
+			HandleCollidingEntity(e, o);
+		}
+	}
+	if (!m_player->Active()) return StateResult::EStateGameOver;
+	return StateResult::EStateContinue;
+}
+
+void GameState::TryShoot()// still weird having this not on the player - entity manager??
+{
+	if (!m_player->CanShoot()) return;
+
+	sf::Vector2f mouse = (sf::Vector2f)InputManager::Get().GetMousePos();
+	m_entities.push_back(new Projectile(m_player->GetPosition(), mouse));
+	m_player->Shoot();
+}
+
 void GameState::Enter()
 {
 	Init();
@@ -45,36 +83,24 @@ void GameState::Exit()
 
 }
 
-StateResult GameState::Update()// abstract this entire thing this is disgusting please
+StateResult GameState::Update()
 {
-	//TODO: add pause
-	if (InputManager::Get().GetKeyDown(sf::Keyboard::Escape))
-		return StateResult::EStateMenu;
+	StateResult result;
+	
+	if (Continued(result, HandleInput()) &&
+		Continued(result, HandleEntities()))
+			Renderer::Get().Render(m_entities);
 
-	if (InputManager::Get().GetMouseDown(Mouse::Left))// entity manager?  member function in this?
-	{
-		// sooooo ugly - fix all of this holy shit
-		if (m_player->GetShootCooldown() >= m_player->m_shootCooldown)
-		{
-			sf::Vector2f mouse = (sf::Vector2f)InputManager::Get().GetMousePos();
-			m_entities.push_back(new Projectile(m_player->GetPosition(), mouse));
-			m_player->ResetShootCooldown();
-		}
-	}
-
-	for (IEntity* e : m_entities)
-	{
-		if (!e->Active()) continue;
-		e->Update();
-		HandleCollidingBounds(e);
-		if(e != m_player) HandleCollidingEntity(m_player, e);
-	}
-	if (!m_player->Active()) return StateResult::EStateGameOver;
-	Renderer::Get().Render(m_entities);// do i want render to be handled here?
-
-	return StateResult::EStateContinue;
+	return result;
 }
 
+bool GameState::Continued(StateResult& out, StateResult result)
+{
+	// this is kinda gross - but it was worse before trust me
+	// std::expected would be lovely here
+	out = result;
+	return result == StateResult::EStateContinue;
+}
 // ------------------------------ MENU STATE ------------------------------ \\
 
 MenuState::MenuState()
