@@ -4,7 +4,14 @@
 #include <SFML/Window/Event.hpp>
 #include <vector>
 
-
+enum Mouse 
+{
+	Left = 0,
+	Right,
+	Middle,
+	Back,
+	Front
+};
 class InputManager
 {
 public:

@@ -23,7 +23,7 @@ Button::Button(const sf::Font& font, std::string text, sf::Vector2f pos, sf::Vec
 
 bool Button::Clicked()
 {
-    return InputManager::Get().GetMouseDown(0) && m_hovered;// left mouse
+    return InputManager::Get().GetMouseDown(Mouse::Left) && m_hovered;
 }
 
 void Button::Hover()
@@ -35,6 +35,11 @@ void Button::Hover()
         m_shape.setFillColor(sf::Color(200, 200, 200));
     else
         m_shape.setFillColor(sf::Color(60, 60, 60));
+}
+
+sf::FloatRect Button::GetBounds()
+{
+    return m_shape.getGlobalBounds();
 }
 
 sf::RectangleShape& Button::GetShape()

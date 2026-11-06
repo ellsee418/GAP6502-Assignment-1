@@ -66,7 +66,7 @@ void Engine::Update()
 {
 	while (!m_endGame)
 	{
-		HandleGameState();
+		if (HandleGameState()) break;
 		m_gameState->Update();
 		EventManager::PollEvents(Renderer::Get().Window());
 		m_endGame = !Renderer::Get().Active();

@@ -15,7 +15,7 @@ public:
     void Hover();
 
     void Draw();
-    sf::FloatRect GetBounds() const { return m_shape.getGlobalBounds(); }
+    sf::FloatRect GetBounds();
     sf::RectangleShape& GetShape();
     sf::Text& GetText();
     void SetPosition(sf::Vector2f pos);
