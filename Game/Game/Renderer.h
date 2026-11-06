@@ -12,7 +12,7 @@ public:
 
 	void Render(std::vector<IEntity*>& vec);
 	void Render(sf::Text& txt);
-	void Render(std::vector<Button>& vec);
+	void Render(std::vector<Button>& vec, sf::Font font);
 
 
 	bool Active();

@@ -54,9 +54,14 @@ void Renderer::Render(sf::Text& txt)
 	m_window->display();
 }
 
-void Renderer::Render(std::vector<Button>& vec)
+void Renderer::Render(std::vector<Button>& vec, sf::Font font)
 {
 	m_window->clear(sf::Color::Black);
+
+	sf::Text title("fortnite", font);
+	float yGap = 150.f;
+	title.setPosition((WIN_WIDTH - title.getGlobalBounds().width) / 2, yGap);
+	m_window->draw(title);
 
 	for (int i = 0; i < vec.size(); ++i)
 	{

@@ -97,10 +97,12 @@ void MenuState::Exit()
 
 StateResult MenuState::Update()
 {
+
+
 	m_play->Hover();
 	m_quit->Hover();
 
-	Renderer::Get().Render(m_buttons);
+	Renderer::Get().Render(m_buttons, m_font);
 
 
 	if (m_play->Clicked())
