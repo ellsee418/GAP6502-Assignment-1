@@ -1,6 +1,7 @@
 #include "GameStates.h"
 #include "Enemy.h"
 #include "Player.h"
+#include "Projectile.h"
 #include "Renderer.h"
 #include "InputManager.h"
 #include "Collision.hpp"
@@ -28,7 +29,7 @@ void GameState::Init()
 {
 
 	for (int i = 0; i < 10; ++i)
-		m_entities.push_back(new Enemy({ 50.f, (float)(i + 1.f) * 50.f }, sf::Color::Red));// delete plz
+		m_entities.push_back(new Enemy({ 50.f, (float)(i + 1.f) * 50.f }, sf::Color::Red));
 
 	m_player = new Player({ 400.f, 200.f }, sf::Color::Green);
 	m_entities.push_back(m_player);
@@ -44,11 +45,22 @@ void GameState::Exit()
 
 }
 
-StateResult GameState::Update()
+StateResult GameState::Update()// abstract this entire thing this is disgusting please
 {
 	//TODO: add pause
 	if (InputManager::Get().GetKeyDown(sf::Keyboard::Escape))
 		return StateResult::EStateMenu;
+
+	if (InputManager::Get().GetMouseDown(Mouse::Left))// entity manager?  member function in this?
+	{
+		// sooooo ugly - fix all of this holy shit
+		if (m_player->GetShootCooldown() >= m_player->m_shootCooldown)
+		{
+			sf::Vector2f mouse = (sf::Vector2f)InputManager::Get().GetMousePos();
+			m_entities.push_back(new Projectile(m_player->GetPosition(), mouse));
+			m_player->ResetShootCooldown();
+		}
+	}
 
 	for (IEntity* e : m_entities)
 	{

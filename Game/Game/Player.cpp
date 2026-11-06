@@ -1,14 +1,30 @@
 #include "Player.h"
 #include "InputManager.h"
+#include "Character.h"
+#include "Timer.h"
+#include "Math.hpp"
 
 Player::Player(sf::Vector2f pos, sf::Color col, float size, int points, float angle)
-    : Character(pos, col, size, points)
+    : Character(pos, col, size, points), m_shootTimer(nullptr)
 {
     m_angle = angle;
     m_size = size;
-    m_speed = 5.f;
+    m_speed = 3.5f;
     m_pos = pos;
     m_type = EntityType::Player;
+
+    m_shootTimer = new Timer();
+}
+
+Player::~Player()
+{
+    delete m_shootTimer;
+}
+
+void Player::Update()
+{
+    m_shootTimer->Tick();
+    Character::Update();
 }
 
 sf::Vector2f Player::GetDirection()
@@ -46,4 +62,14 @@ void Player::OnEntityCollision(IEntity* other)
         TakeDamage(20);
         printf("player hit. health: %d\n", m_health);
     }
+}
+
+float Player::GetShootCooldown()
+{
+    return m_shootTimer->GetTotalTime();
+}
+
+void Player::ResetShootCooldown()
+{
+    m_shootTimer->Reset();
 }

@@ -28,3 +28,10 @@ inline float RandomFloat(int a, int b)
 
     return (float)RandomInt(a, b) + (float)(rand()) / (float)(RAND_MAX);
 }
+
+inline float Distance(const sf::Vector2f& lhs, sf::Vector2f rhs)
+{
+    float dx = abs(rhs.x - lhs.x);
+    float dy = abs(rhs.y - lhs.y);
+    return sqrtf(dx * dx + dy * dy);
+}

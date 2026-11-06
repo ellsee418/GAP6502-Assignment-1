@@ -32,7 +32,7 @@ void InputManager::OnEvent(const sf::Event& event)
 		case sf::Event::KeyPressed:
 		{
 			m_keyDownEvents.push_back(event.key.code);
-			m_keysHeld[event.key.code] = 1;// mark as currently down - for held
+			m_keysHeld[event.key.code] = 1;
 			//printf("KeyPressed: %d\n", event.key.scancode);
 			break;
 		}
@@ -109,4 +109,3 @@ sf::Vector2i InputManager::GetMousePos()
 {
 	return sf::Vector2i(m_mouseX, m_mouseY);
 }
-

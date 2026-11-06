@@ -3,7 +3,7 @@
 #include <SFML/System/Vector2.hpp>
 #include <SFML/Graphics/Color.hpp>
 
-enum class EntityType {Entity, Character, Player, Enemy};
+enum class EntityType {Entity, Character, Player, Enemy, Projectile};
 
 class IEntity
 {

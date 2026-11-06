@@ -7,7 +7,6 @@ Entity::Entity(sf::Vector2f pos, sf::Color col, float size, int points, float an
 
 void Entity::Update()
 {
-    //m_angle++;
 }
 
 bool Entity::Active()
