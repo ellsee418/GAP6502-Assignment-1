@@ -8,7 +8,7 @@ public:
 	Player(sf::Vector2f pos, sf::Color col, float size = 25.f, int points = 4, float angle = 45.f);
 	~Player();
 	void Update() override;
-	void HandleInput();
+	void HandleShoot();
 	sf::Vector2f GetDirection();
 	void Move() override;
 	void OnEntityCollision(IEntity* other) override;

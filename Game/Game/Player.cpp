@@ -25,11 +25,11 @@ Player::~Player()
 void Player::Update()
 {
     m_shootTimer->Tick();
-    HandleInput();
+    HandleShoot();
     Character::Update();
 }
 
-void Player::HandleInput()
+void Player::HandleShoot()
 {
     if (InputManager::Get().GetMouseDown(Mouse::Left))
     {
