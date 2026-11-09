@@ -140,7 +140,7 @@ GameOverState::~GameOverState()
 void GameOverState::Init()
 {
 	m_font.loadFromFile("../Assets/Pong.ttf");
-	std::string str = "u fuckig died man\n   'r' to restart\n   'esc' to exit";
+	std::string str = "  u died man\n'r' to restart\n 'esc' to exit";
 	m_text = new sf::Text(str, m_font, 30);
 
 	sf::FloatRect textRect = m_text->getLocalBounds();

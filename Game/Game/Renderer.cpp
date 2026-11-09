@@ -24,10 +24,10 @@ Renderer& Renderer::Get()
 
 void Renderer::Init()
 {
-	m_window = new sf::RenderWindow(sf::VideoMode({ WIN_WIDTH, WIN_HEIGHT }), "fortnite");
+	m_window = new sf::RenderWindow(sf::VideoMode({ WIN_WIDTH, WIN_HEIGHT }), "video game");
 	m_window->setFramerateLimit(60);
 	sf::Image icon;
-	if (icon.loadFromFile("../Assets/fortnite.png"))
+	if (icon.loadFromFile("../Assets/icon.png"))
 		m_window->setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
 }
 
@@ -77,7 +77,7 @@ void Renderer::Render(std::vector<Button>& vec, sf::Font font)
 {
 	m_window->clear(sf::Color::Black);
 
-	sf::Text title("fortnite", font);
+	sf::Text title("video game", font);
 	float yGap = 150.f;
 	title.setPosition((WIN_WIDTH - title.getGlobalBounds().width) / 2, yGap);
 	m_window->draw(title);
