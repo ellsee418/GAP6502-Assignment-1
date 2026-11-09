@@ -4,6 +4,7 @@
 #include "Projectile.h"
 #include "Renderer.h"
 #include "InputManager.h"
+#include "ScoreManager.h"
 #include "EntityManager.h"
 #include "Collision.hpp"
 #include "Button.h"
@@ -127,7 +128,7 @@ StateResult MenuState::Update()
 // ------------------------------ GAME OVER STATE ------------------------------ \\
 
 GameOverState::GameOverState()
-	: m_text(nullptr)
+	: m_text(nullptr), m_score(0)
 {
 }
 
@@ -146,6 +147,8 @@ void GameOverState::Init()
 	m_text->setOrigin(textRect.left + textRect.width / 2.f,
 		textRect.top + textRect.height / 2.f);
 	m_text->setPosition(WIN_WIDTH / 2.f, WIN_HEIGHT / 3.f);
+
+	m_score = ScoreManager::Get().GetScore();
 }
 
 void GameOverState::Enter()
@@ -155,18 +158,19 @@ void GameOverState::Enter()
 
 void GameOverState::Exit()
 {
+	ScoreManager::Get().ResetScore();
 }
 
 StateResult GameOverState::Update()
 {
-	Renderer::Get().Render(*m_text);
+	Renderer::Get().Render(*m_text, m_score);
 
 	if (InputManager::Get().GetKeyDown(sf::Keyboard::R))
 		return StateResult::EStateGame;
 	if (InputManager::Get().GetKeyDown(sf::Keyboard::Escape))
 		return StateResult::EStateMenu;
 
-	return StateResult::EStateGameOver;
+	return StateResult::EStateContinue;
 }
 
 

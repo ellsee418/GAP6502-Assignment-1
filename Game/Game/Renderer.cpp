@@ -1,5 +1,6 @@
 #include "Renderer.h"
 #include "EventManager.h"
+#include "ScoreManager.h"
 #include "common.h"
 #include "Button.h"
 
@@ -7,6 +8,7 @@ Renderer::Renderer(unsigned int width = WIN_WIDTH, unsigned int height = WIN_HEI
 	: m_window(nullptr)
 {
 	Init();
+	m_font.loadFromFile("../Assets/Pong.ttf");
 }
 
 Renderer::~Renderer()
@@ -44,13 +46,30 @@ void Renderer::Render(std::vector<IEntity*>& vec)
 		shape.setRotation(e->GetAngle());
 		m_window->draw(shape);
 	}
+	int score = ScoreManager::Get().GetScore();
+	std::string scoreStr = "Score: " + std::to_string(score);
+	sf::Text scoreText(scoreStr, m_font);
+	float padding = 10.f;
+	scoreText.setPosition(WIN_WIDTH - scoreText.getGlobalBounds().width - padding, 
+		scoreText.getGlobalBounds().height + padding);
+
+
+	m_window->draw(scoreText);
 	m_window->display();
 }
 
-void Renderer::Render(sf::Text& txt)
+void Renderer::Render(sf::Text& txt, int score)
 {
 	m_window->clear(sf::Color::Red);
 	m_window->draw(txt);
+
+	std::string scoreStr = "Score: " + std::to_string(score);
+	sf::Text scoreText(scoreStr, m_font);
+	float padding = 10.f;
+	scoreText.setPosition(WIN_WIDTH / 2 - scoreText.getGlobalBounds().width /2 ,
+		WIN_HEIGHT /2 + scoreText.getGlobalBounds().height);
+
+	m_window->draw(scoreText);
 	m_window->display();
 }
 
@@ -68,6 +87,7 @@ void Renderer::Render(std::vector<Button>& vec, sf::Font font)
 		m_window->draw(vec[i].GetShape());
 		m_window->draw(vec[i].GetText());
 	}
+
 	m_window->display();
 }
 

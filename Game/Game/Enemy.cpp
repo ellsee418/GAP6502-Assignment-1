@@ -1,5 +1,6 @@
 #include "Enemy.h"
 #include "Math.hpp"
+#include "ScoreManager.h"
 
 Enemy::Enemy(sf::Vector2f pos, sf::Color col, float size, int points, float angle)
 	: Character(pos, col, size, points, angle), m_directionTimer(nullptr), m_respawnTimer(nullptr), m_nextTurnTime(RandomFloat(0,2)), m_respawnCooldown(RandomFloat(1, 5))
@@ -82,6 +83,8 @@ void Enemy::OnBoundsCollision()
 void Enemy::OnEntityCollision(IEntity* other)
 {
     if (other->Type() == m_type) return;
+    if (other->Type() == EntityType::Projectile) ScoreManager::Get().AddScore(100);// weird to do this here but makes more sense than on proj
+
 
     TakeDamage(100);
 }
