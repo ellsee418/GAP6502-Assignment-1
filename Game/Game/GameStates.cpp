@@ -51,7 +51,7 @@ void GameState::Enter()
 
 void GameState::Exit()
 {
-	EntityManager::Get()->ResetEntities();
+	EntityManager::Get()->DeInit();
 }
 
 StateResult GameState::Update()

@@ -3,10 +3,25 @@
 #include "Renderer.h"
 #include "Entity.h"
 
+
+EntityManager* EntityManager::sInstance = nullptr;
+
 EntityManager* EntityManager::Get()
 {
-	static EntityManager* sInstance = new EntityManager();
+	if (!sInstance) Init();
 	return sInstance;
+}
+
+void EntityManager::Init()
+{
+	sInstance = new EntityManager();
+}
+
+void EntityManager::DeInit()
+{
+	ResetEntities();
+	delete sInstance;
+	sInstance = nullptr;
 }
 
 void EntityManager::Update()
@@ -27,6 +42,7 @@ void EntityManager::ResetEntities()
 		if (m_entities[i])
 			delete m_entities[i];
 	}
+	m_entities.clear();
 }
 
 void EntityManager::HandleEntities()
@@ -49,10 +65,9 @@ void EntityManager::HandleEntities()
 
 EntityManager::EntityManager()
 {
-
 }
 
 EntityManager::~EntityManager()
 {
-
+	ResetEntities();
 }

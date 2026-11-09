@@ -4,4 +4,4 @@
 
 const sf::VideoMode desktop = sf::VideoMode::getDesktopMode();
 const unsigned int WIN_WIDTH = (desktop.width * 0.5f);
-const unsigned int WIN_HEIGHT = (desktop.height * 0.75f);
+const unsigned int WIN_HEIGHT = (desktop.height * 0.6f);
