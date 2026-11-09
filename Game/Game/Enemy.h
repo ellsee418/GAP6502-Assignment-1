@@ -11,6 +11,9 @@ public:
 	virtual void Update() override;
 	virtual void HandleMovementDirection();
 	virtual void Move() override;
+	virtual void HandleRespawn();
+	virtual void Respawn();
+
 
 	virtual void OnBoundsCollision() override;
 	virtual void OnEntityCollision(IEntity* other) override;
@@ -18,6 +21,7 @@ private:
 
 protected:
 	Timer* m_directionTimer;
-	float m_nextTurnTime;
+	Timer* m_respawnTimer;
+	float m_nextTurnTime, m_respawnCooldown;
 };
 

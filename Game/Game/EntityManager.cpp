@@ -50,8 +50,8 @@ void EntityManager::HandleEntities()
 	for (int i = 0 ; i < m_entities.size(); ++i)
 	{
 		IEntity* e = m_entities[i];
-		if (!e->Active()) continue;
 		e->Update();
+		if (!e->Active()) continue;
 		HandleCollidingBounds(e);
 
 		for (int j = 0; j < m_entities.size(); ++j)
