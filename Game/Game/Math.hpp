@@ -1,4 +1,5 @@
 #pragma once
+#include "common.h"
 #include <cmath>
 #include <random>
 #include <SFML/System/Vector2.hpp>
@@ -34,4 +35,20 @@ inline float Distance(const sf::Vector2f& lhs, sf::Vector2f rhs)
     float dx = abs(rhs.x - lhs.x);
     float dy = abs(rhs.y - lhs.y);
     return sqrtf(dx * dx + dy * dy);
+}
+
+inline sf::Vector2f RandomPosition(sf::Vector2f avoidPos)
+{
+    float x = 0, y = 0;
+    const float padding = 25.f;
+    x = RandomFloat(padding, WIN_WIDTH); 
+    y = RandomFloat(padding, WIN_HEIGHT);
+
+    sf::Vector2f newPos = { x,y };
+    while (Distance(newPos, avoidPos) < padding)
+    {
+        x = RandomFloat(padding, WIN_WIDTH);
+        y = RandomFloat(padding, WIN_HEIGHT);
+    }
+    return newPos;
 }

@@ -8,6 +8,7 @@
 #include "EntityManager.h"
 #include "Collision.hpp"
 #include "Button.h"
+#include "Math.hpp"
 
 
 #include <stdio.h>
@@ -28,11 +29,11 @@ GameState::~GameState()
 
 void GameState::Init()
 {
-	for (int i = 0; i < 10; ++i)
-		EntityManager::Get()->AddEntity((new Enemy({ 50.f, (float)(i + 1.f) * 50.f }, sf::Color::Red)));
-
 	m_player = new Player({ 400.f, 200.f }, sf::Color::Green);
 	EntityManager::Get()->AddEntity(m_player);
+
+	for (int i = 0; i < 10; ++i)
+		EntityManager::Get()->AddEntity((new Enemy(RandomPosition(m_player->GetPosition()), sf::Color::Red)));
 }
 
 StateResult GameState::HandleStates()

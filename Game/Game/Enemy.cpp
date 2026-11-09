@@ -73,6 +73,7 @@ void Enemy::Respawn()
     m_collides = true;
     m_draw = true;
     m_health = 100;
+    m_pos = RandomPosition(m_pos);// could spawn on player - need way to pass player pos
 }
 
 void Enemy::OnBoundsCollision()
