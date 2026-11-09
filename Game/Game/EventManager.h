@@ -2,7 +2,7 @@
 
 #include <SFML/Graphics/RenderWindow.hpp>
 
-static class EventManager
+class EventManager
 {
 public:
 	static bool PollEvents(sf::RenderWindow& window);

@@ -8,7 +8,7 @@ class Renderer
 {
 public:
 	static Renderer& Get();
-	void Init(unsigned int width = WIN_WIDTH, unsigned int height = WIN_HEIGHT);
+	void Init();
 
 	void Render(std::vector<IEntity*>& vec);
 	void Render(sf::Text& txt);

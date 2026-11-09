@@ -14,11 +14,11 @@ public:
 	void OnEntityCollision(IEntity* other) override;
 
 	bool CanShoot() const;
-	void Shoot();
+	void Shoot(sf::Vector2f mouse);
 
 	const float m_shootCooldown = 0.2f;
 private:
-
 protected:
 	Timer* m_shootTimer;
+
 };

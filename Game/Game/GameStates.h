@@ -5,7 +5,7 @@
 #include <SFML/Graphics/Text.hpp>
 #include <SFML/Graphics/Font.hpp>
 
-
+class EntityManager;
 class IEntity;
 class Player;
 class Button;
@@ -40,15 +40,10 @@ public:
 	StateResult Update() override;
 
 	void Init();
-	StateResult HandleInput();
-	StateResult HandleEntities();
-
-	void TryShoot();
-
+	StateResult HandleStates();
 	static bool Continued(StateResult& out, StateResult r);
 
-private:
-	std::vector<IEntity*> m_entities;
+protected:
 	Player* m_player;
 	int m_score;
 };

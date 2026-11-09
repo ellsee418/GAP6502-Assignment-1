@@ -4,6 +4,7 @@
 #include "Projectile.h"
 #include "Renderer.h"
 #include "InputManager.h"
+#include "EntityManager.h"
 #include "Collision.hpp"
 #include "Button.h"
 
@@ -21,56 +22,26 @@ GameState::GameState()
 
 GameState::~GameState()
 {
-	for (IEntity* e : m_entities)
-		if (e) delete e;// includes player
+
 }
 
 void GameState::Init()
 {
-
 	for (int i = 0; i < 10; ++i)
-		m_entities.push_back(new Enemy({ 50.f, (float)(i + 1.f) * 50.f }, sf::Color::Red));
+		EntityManager::Get()->AddEntity((new Enemy({ 50.f, (float)(i + 1.f) * 50.f }, sf::Color::Red)));
 
 	m_player = new Player({ 400.f, 200.f }, sf::Color::Green);
-	m_entities.push_back(m_player);
+	EntityManager::Get()->AddEntity(m_player);
 }
 
-StateResult GameState::HandleInput()
+StateResult GameState::HandleStates()
 {
 	//TODO: add pause
 	if (InputManager::Get().GetKeyDown(sf::Keyboard::Escape))
 		return StateResult::EStateMenu;
-
-	if (InputManager::Get().GetMouseDown(Mouse::Left))// entity manager?  member function in this?
-		TryShoot();
+	if (!m_player->Active()) 
+		return StateResult::EStateGameOver;
 	return StateResult::EStateContinue;
-}
-
-StateResult GameState::HandleEntities()
-{
-	for (IEntity* e : m_entities)
-	{
-		if (!e->Active()) continue;
-		e->Update();
-		HandleCollidingBounds(e);
-
-		for (IEntity* o : m_entities)
-		{
-			if (!e->Active() || !o->Active()) continue;
-			HandleCollidingEntity(e, o);
-		}
-	}
-	if (!m_player->Active()) return StateResult::EStateGameOver;
-	return StateResult::EStateContinue;
-}
-
-void GameState::TryShoot()// still weird having this not on the player - entity manager??
-{
-	if (!m_player->CanShoot()) return;
-
-	sf::Vector2f mouse = (sf::Vector2f)InputManager::Get().GetMousePos();
-	m_entities.push_back(new Projectile(m_player->GetPosition(), mouse));
-	m_player->Shoot();
 }
 
 void GameState::Enter()
@@ -80,24 +51,20 @@ void GameState::Enter()
 
 void GameState::Exit()
 {
-
+	EntityManager::Get()->ResetEntities();
 }
 
 StateResult GameState::Update()
 {
 	StateResult result;
-	
-	if (Continued(result, HandleInput()) &&
-		Continued(result, HandleEntities()))
-			Renderer::Get().Render(m_entities);
+	if (Continued(result, HandleStates()))
+		EntityManager::Get()->Update();
 
 	return result;
 }
 
 bool GameState::Continued(StateResult& out, StateResult result)
 {
-	// this is kinda gross - but it was worse before trust me
-	// std::expected would be lovely here
 	out = result;
 	return result == StateResult::EStateContinue;
 }
@@ -121,8 +88,10 @@ void MenuState::Init()
 	m_quit = new Button(m_font, "Quit", { 0.f,0.f});
 	
 	float gap = 10.f;
-	m_play->SetPosition({ (WIN_WIDTH - m_play->GetBounds().width) / 2 ,	(WIN_HEIGHT - m_play->GetBounds().height - gap)  / 2 });
-	m_quit->SetPosition({ (WIN_WIDTH - m_quit->GetBounds().width) / 2 , (WIN_HEIGHT + m_quit->GetBounds().height + gap)  / 2 });
+	m_play->SetPosition({ (WIN_WIDTH - m_play->GetBounds().width) / 2,
+		(WIN_HEIGHT - m_play->GetBounds().height - gap)  / 2 });
+	m_quit->SetPosition({ (WIN_WIDTH - m_quit->GetBounds().width) / 2,
+		(WIN_HEIGHT + m_quit->GetBounds().height + gap)  / 2 });
 
 	m_buttons.push_back(*m_play);
 	m_buttons.push_back(*m_quit);
@@ -139,8 +108,6 @@ void MenuState::Exit()
 
 StateResult MenuState::Update()
 {
-
-
 	m_play->Hover();
 	m_quit->Hover();
 
@@ -172,7 +139,7 @@ GameOverState::~GameOverState()
 void GameOverState::Init()
 {
 	m_font.loadFromFile("../Assets/Pong.ttf");
-	std::string str = "u fuckig died man\n   'r' to restart";
+	std::string str = "u fuckig died man\n   'r' to restart\n   'esc' to exit";
 	m_text = new sf::Text(str, m_font, 30);
 
 	sf::FloatRect textRect = m_text->getLocalBounds();
@@ -196,6 +163,8 @@ StateResult GameOverState::Update()
 
 	if (InputManager::Get().GetKeyDown(sf::Keyboard::R))
 		return StateResult::EStateGame;
+	if (InputManager::Get().GetKeyDown(sf::Keyboard::Escape))
+		return StateResult::EStateMenu;
 
 	return StateResult::EStateGameOver;
 }

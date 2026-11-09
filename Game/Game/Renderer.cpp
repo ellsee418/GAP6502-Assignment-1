@@ -20,9 +20,9 @@ Renderer& Renderer::Get()
 	return sInstance;
 }
 
-void Renderer::Init(unsigned int width, unsigned int height)
+void Renderer::Init()
 {
-	m_window = new sf::RenderWindow(sf::VideoMode({ width, height }), "fortnite");
+	m_window = new sf::RenderWindow(sf::VideoMode({ WIN_WIDTH, WIN_HEIGHT }), "fortnite");
 	m_window->setFramerateLimit(60);
 	sf::Image icon;
 	if (icon.loadFromFile("../Assets/fortnite.png"))

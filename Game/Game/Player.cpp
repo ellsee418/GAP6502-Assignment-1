@@ -1,5 +1,6 @@
 #include "Player.h"
 #include "InputManager.h"
+#include "BulletFactory.h"
 #include "Character.h"
 #include "Timer.h"
 #include "Math.hpp"
@@ -24,7 +25,17 @@ Player::~Player()
 void Player::Update()
 {
     m_shootTimer->Tick();
+    HandleInput();
     Character::Update();
+}
+
+void Player::HandleInput()
+{
+    if (InputManager::Get().GetMouseDown(Mouse::Left))
+    {
+        sf::Vector2f mouse = (sf::Vector2f)InputManager::Get().GetMousePos();
+        Shoot(mouse);
+    }
 }
 
 sf::Vector2f Player::GetDirection()
@@ -68,7 +79,9 @@ bool Player::CanShoot() const
     return m_shootTimer->GetTotalTime() >= m_shootCooldown;
 }
 
-void Player::Shoot()
+void Player::Shoot(sf::Vector2f mouse)
 {
+    if (!CanShoot()) return;
+    BulletFactory::Get().Create(mouse, m_pos);
     m_shootTimer->Reset();
 }
