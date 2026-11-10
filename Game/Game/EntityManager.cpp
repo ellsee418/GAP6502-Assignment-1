@@ -61,6 +61,20 @@ void EntityManager::HandleEntities()
 			HandleCollidingEntity(e, o);
 		}
 	}
+	FreeDeadProjectiles();
+}
+
+void EntityManager::FreeDeadProjectiles()
+{
+	for (int i = 0; i < m_entities.size(); ++i)
+	{
+		if (m_entities[i]->Active()) continue;
+		if (m_entities[i]->Type() == EntityType::Projectile)
+		{
+			delete m_entities[i];
+			m_entities.erase(m_entities.begin() + i);
+		}
+	}
 }
 
 EntityManager::EntityManager()

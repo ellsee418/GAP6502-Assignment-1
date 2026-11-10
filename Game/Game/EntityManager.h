@@ -13,6 +13,7 @@ public:
 	void AddEntity(IEntity* entity);
 	void ResetEntities();
 	void HandleEntities();
+	void FreeDeadProjectiles();
 
 	~EntityManager();
 private:
