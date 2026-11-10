@@ -12,6 +12,7 @@ Engine::Engine()
 
 Engine::~Engine()
 {
+	delete m_gameState;
 }
 
 bool Engine::HandleGameState()
