@@ -4,7 +4,7 @@
 #include "Projectile.h"
 #include "Renderer.h"
 #include "InputManager.h"
-#include "ScoreManager.h"
+#include "UIManager.h"
 #include "EntityManager.h"
 #include "Collision.hpp"
 #include "Button.h"
@@ -30,6 +30,7 @@ GameState::~GameState()
 void GameState::Init()
 {
 	m_player = new Player({ 400.f, 200.f }, sf::Color::Green);
+	UIManager::Get().Init(m_player);
 	EntityManager::Get()->AddEntity(m_player);
 
 	for (int i = 0; i < 10; ++i)
@@ -149,7 +150,7 @@ void GameOverState::Init()
 		textRect.top + textRect.height / 2.f);
 	m_text->setPosition(WIN_WIDTH / 2.f, WIN_HEIGHT / 3.f);
 
-	m_score = ScoreManager::Get().GetScore();
+	m_score = UIManager::Get().GetScore();
 }
 
 void GameOverState::Enter()
@@ -159,7 +160,7 @@ void GameOverState::Enter()
 
 void GameOverState::Exit()
 {
-	ScoreManager::Get().ResetScore();
+	UIManager::Get().ResetScore();
 }
 
 StateResult GameOverState::Update()

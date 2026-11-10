@@ -10,7 +10,9 @@ public:
 	static Renderer& Get();
 	void Init();
 
-	void Render(std::vector<IEntity*>& vec);// could add member font
+	void UpdateTextGame(sf::Text& scoreText, sf::Text& healthText);
+
+	void Render(std::vector<IEntity*>& vec);
 	void Render(sf::Text& txt, int score);
 	void Render(std::vector<Button>& vec, sf::Font font);
 

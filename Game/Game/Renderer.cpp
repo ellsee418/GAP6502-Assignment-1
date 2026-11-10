@@ -1,6 +1,6 @@
 #include "Renderer.h"
 #include "EventManager.h"
-#include "ScoreManager.h"
+#include "UIManager.h"
 #include "common.h"
 #include "Button.h"
 
@@ -31,13 +31,32 @@ void Renderer::Init()
 		m_window->setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
 }
 
+void Renderer::UpdateTextGame(sf::Text& scoreText, sf::Text& healthText)
+{
+	const float padding = 10.f;
+
+	int score = UIManager::Get().GetScore();
+	std::string scoreStr = "Score: " + std::to_string(score);
+	scoreText.setFont(m_font);
+	scoreText.setString(scoreStr);
+	scoreText.setPosition(WIN_WIDTH - scoreText.getGlobalBounds().width - padding,
+		scoreText.getGlobalBounds().height + padding);
+
+	int health = UIManager::Get().GetPlayerHealth();
+	std::string healthStr = "Health: " + std::to_string(health);
+	healthText.setFont(m_font);
+	healthText.setString(healthStr);
+	healthText.setPosition(padding, 
+		healthText.getGlobalBounds().height + padding);
+}
+
 void Renderer::Render(std::vector<IEntity*>& vec)
 {
 	m_window->clear(sf::Color::Black);
 
 	for (int i = 0; i < vec.size(); ++i)
 	{
-		auto& e = vec[i];
+		IEntity* e = vec[i];
 		if (!e->ShouldDraw()) continue;
 		sf::CircleShape shape(e->Size(), e->Points());
 		shape.setOrigin({ e->Size() , e->Size() });
@@ -46,14 +65,12 @@ void Renderer::Render(std::vector<IEntity*>& vec)
 		shape.setRotation(e->GetAngle());
 		m_window->draw(shape);
 	}
-	int score = ScoreManager::Get().GetScore();
-	std::string scoreStr = "Score: " + std::to_string(score);
-	sf::Text scoreText(scoreStr, m_font);
-	float padding = 10.f;
-	scoreText.setPosition(WIN_WIDTH - scoreText.getGlobalBounds().width - padding, 
-		scoreText.getGlobalBounds().height + padding);
 
+	sf::Text scoreText;
+	sf::Text healthText;
+	UpdateTextGame(scoreText, healthText);
 
+	m_window->draw(healthText);
 	m_window->draw(scoreText);
 	m_window->display();
 }

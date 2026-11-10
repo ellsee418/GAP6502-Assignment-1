@@ -19,7 +19,7 @@ void Character::Update()
     if (m_health <= 0) OnDeath();
 }
 
-float Character::Speed()
+float Character::Speed() const
 {
     return m_speed;
 }
@@ -36,7 +36,7 @@ void Character::Move()
     m_velocity = sf::Vector2f(dir.x * m_speed, dir.y * m_speed);
 }
 
-int Character::GetHealth()
+int Character::GetHealth() const
 {
     return m_health;
 }

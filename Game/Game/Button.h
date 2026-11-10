@@ -14,7 +14,6 @@ public:
     bool Clicked();
     void Hover();
 
-    void Draw();
     sf::FloatRect GetBounds();
     sf::RectangleShape& GetShape();
     sf::Text& GetText();
