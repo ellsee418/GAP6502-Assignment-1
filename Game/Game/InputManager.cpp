@@ -21,8 +21,8 @@ InputManager& InputManager::Get()
 
 void InputManager::ClearEvents()
 {
-	m_keyDownEvents.clear();
-	m_keyReleasedEvents.clear();
+	m_keyDownEvents.Clear();
+	m_keyReleasedEvents.Clear();
 }
 
 void InputManager::OnEvent(const sf::Event& event)
@@ -31,14 +31,14 @@ void InputManager::OnEvent(const sf::Event& event)
 	{
 		case sf::Event::KeyPressed:
 		{
-			m_keyDownEvents.push_back(event.key.code);
+			m_keyDownEvents.PushBack(event.key.code);
 			m_keysHeld[event.key.code] = 1;
 			//printf("KeyPressed: %d\n", event.key.scancode);
 			break;
 		}
 		case sf::Event::KeyReleased:
 		{
-			m_keyReleasedEvents.push_back(event.key.code);
+			m_keyReleasedEvents.PushBack(event.key.code);
 			m_keysHeld[event.key.code] = 0;
 			//printf("KeyReleased: %d\n", event.key.scancode);
 			break;
@@ -67,9 +67,9 @@ void InputManager::OnEvent(const sf::Event& event)
 
 bool InputManager::GetKeyDown(sf::Keyboard::Key key) const
 {
-	for (sf::Keyboard::Key k: m_keyDownEvents)
+	for(int i = 0; i < m_keyDownEvents.Size(); ++i)
 	{
-		if (key == k)
+		if (key == m_keyDownEvents[i])
 			return true;
 	}
 	return false;
@@ -77,9 +77,9 @@ bool InputManager::GetKeyDown(sf::Keyboard::Key key) const
 
 bool InputManager::GetKeyUp(sf::Keyboard::Key key) const
 {
-	for (sf::Keyboard::Key k : m_keyReleasedEvents)
+	for (int i = 0; i < m_keyReleasedEvents.Size(); ++i)
 	{
-		if (key == k)
+		if (key == m_keyReleasedEvents[i])
 			return true;
 	}
 	return false;
