@@ -20,7 +20,6 @@ public:
 	~Renderer();
 private:
 	Renderer(unsigned int height, unsigned int width);
-	void UpdateTextGame(sf::Text& scoreText, sf::Text& healthText);
 
 	sf::RenderWindow* m_window;
 	sf::Font m_font;

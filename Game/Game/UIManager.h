@@ -1,5 +1,7 @@
 #pragma once
 
+#include <SFML/Graphics/Text.hpp>
+
 class Player;
 
 class UIManager
@@ -13,6 +15,8 @@ public:
 	void ResetScore();
 
 	int GetPlayerHealth() const;
+
+	void UpdateUI(sf::Text& scoreText, sf::Text& healthText, sf::Font& font);
 
 	~UIManager();
 private:

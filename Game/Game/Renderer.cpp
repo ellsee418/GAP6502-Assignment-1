@@ -31,25 +31,6 @@ void Renderer::Init()
 		m_window->setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
 }
 
-void Renderer::UpdateTextGame(sf::Text& scoreText, sf::Text& healthText)
-{
-	const float padding = 10.f;
-
-	int score = UIManager::Get().GetScore();
-	std::string scoreStr = "Score: " + std::to_string(score);
-	scoreText.setFont(m_font);
-	scoreText.setString(scoreStr);
-	scoreText.setPosition(WIN_WIDTH - scoreText.getGlobalBounds().width - padding,
-		scoreText.getGlobalBounds().height + padding);
-
-	int health = UIManager::Get().GetPlayerHealth();
-	std::string healthStr = "Health: " + std::to_string(health);
-	healthText.setFont(m_font);
-	healthText.setString(healthStr);
-	healthText.setPosition(padding, 
-		healthText.getGlobalBounds().height + padding);
-}
-
 void Renderer::Render(std::vector<IEntity*>& vec)
 {
 	m_window->clear(sf::Color::Black);
@@ -68,10 +49,10 @@ void Renderer::Render(std::vector<IEntity*>& vec)
 
 	sf::Text scoreText;
 	sf::Text healthText;
-	UpdateTextGame(scoreText, healthText);
+	UIManager::Get().UpdateUI(scoreText, healthText, m_font);
 
-	m_window->draw(healthText);
 	m_window->draw(scoreText);
+	m_window->draw(healthText);
 	m_window->display();
 }
 
