@@ -11,10 +11,10 @@ public:
     Button(const sf::Font& font, std::string text, sf::Vector2f pos,
         sf::Vector2f size = { 200.f, 60.f });
 
-    bool Clicked();
+    bool Clicked() const;
     void Hover();
 
-    sf::FloatRect GetBounds();
+    sf::FloatRect GetBounds() const;
     sf::RectangleShape& GetShape();
     sf::Text& GetText();
     void SetPosition(sf::Vector2f pos);

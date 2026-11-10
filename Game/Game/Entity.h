@@ -11,21 +11,21 @@ public:
 	virtual ~IEntity() = default;
 
 	virtual void			Update() = 0;
-	virtual bool			Active() = 0;
+	virtual bool			Active() const = 0;
 	virtual void			Kill() = 0;
-	virtual bool			Collides() = 0;
-	virtual bool			ShouldDraw() = 0;
-	virtual EntityType		Type() = 0;
-	virtual float			Size() = 0;
-	virtual int				Points() = 0;
+	virtual bool			Collides() const = 0;
+	virtual bool			ShouldDraw() const = 0;
+	virtual EntityType		Type() const = 0;
+	virtual float			Size() const = 0;
+	virtual int				Points() const = 0;
 
-	virtual sf::Vector2f	GetPosition() = 0;
+	virtual sf::Vector2f	GetPosition() const = 0;
 	virtual void			SetPosition(sf::Vector2f pos) = 0;
-	virtual float			GetAngle() = 0;
+	virtual float			GetAngle() const = 0;
 	virtual void			SetAngle(float angle) = 0;
-	virtual sf::Vector2f	GetVelocity() = 0;
+	virtual sf::Vector2f	GetVelocity() const = 0;
 	virtual void			SetVelocity(sf::Vector2f vel) = 0;
-	virtual sf::Color		GetColour() = 0;
+	virtual sf::Color		GetColour() const = 0;
 	virtual void			SetColour(sf::Color col) = 0;
 
 	virtual void			OnBoundsCollision() = 0;
@@ -40,21 +40,21 @@ public:
 	Entity(sf::Vector2f pos = { 0.f, 0.f }, sf::Color col = sf::Color::Red, float size = 30.f, int points = 3, float angle = 0.f);
 
 	virtual void			Update() override;
-			bool			Active() override;
+			bool			Active() const override;
 			void			Kill() override;
-	virtual bool			Collides() override;
-	virtual bool			ShouldDraw() override;
-	virtual EntityType		Type() override;
-	virtual float			Size() override;
-	virtual int				Points() override;
+	virtual bool			Collides() const override;
+	virtual bool			ShouldDraw() const override;
+	virtual EntityType		Type() const override;
+	virtual float			Size() const override;
+	virtual int				Points() const override;
 
-	virtual sf::Vector2f	GetPosition() override;
+	virtual sf::Vector2f	GetPosition() const override;
 	virtual void			SetPosition(sf::Vector2f pos) override;
-	virtual float			GetAngle() override;
+	virtual float			GetAngle() const override;
 	virtual void			SetAngle(float angle) override;
-			sf::Vector2f	GetVelocity() override;
+			sf::Vector2f	GetVelocity() const override;
 			void			SetVelocity(sf::Vector2f vel) override;
-	virtual sf::Color		GetColour() override;
+	virtual sf::Color		GetColour() const override;
 	virtual void			SetColour(sf::Color col) override;
 
 	virtual void			OnBoundsCollision() override {};

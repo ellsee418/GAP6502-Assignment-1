@@ -9,7 +9,7 @@ void Entity::Update()
 {
 }
 
-bool Entity::Active()
+bool Entity::Active() const
 {
     return m_active;
 }
@@ -21,22 +21,22 @@ void Entity::Kill()
     m_draw = false;
 }
 
-bool Entity::Collides()
+bool Entity::Collides() const
 {
     return m_collides;
 }
 
-bool Entity::ShouldDraw()
+bool Entity::ShouldDraw() const
 {
     return m_draw;
 }
 
-EntityType Entity::Type()
+EntityType Entity::Type() const
 {
     return m_type;
 }
 
-sf::Vector2f Entity::GetPosition()
+sf::Vector2f Entity::GetPosition() const
 {
     return m_pos;
 }
@@ -46,7 +46,7 @@ void Entity::SetPosition(sf::Vector2f pos)
     m_pos = pos;
 }
 
-float Entity::GetAngle()
+float Entity::GetAngle() const
 {
     return m_angle;
 }
@@ -56,7 +56,7 @@ void Entity::SetAngle(float angle)
     m_angle = angle;
 }
 
-sf::Vector2f Entity::GetVelocity()
+sf::Vector2f Entity::GetVelocity() const
 {
     return m_velocity;
 }
@@ -66,7 +66,7 @@ void Entity::SetVelocity(sf::Vector2f vel)
     m_velocity = vel;
 }
 
-sf::Color Entity::GetColour()
+sf::Color Entity::GetColour() const
 {
     return m_colour;
 }
@@ -76,12 +76,12 @@ void Entity::SetColour(sf::Color col)
     m_colour = col;
 }
 
-float Entity::Size()
+float Entity::Size() const
 {
     return m_size;
 }
 
-int Entity::Points()
+int Entity::Points() const
 {
     return m_points;
 }

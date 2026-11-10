@@ -65,7 +65,7 @@ void InputManager::OnEvent(const sf::Event& event)
 	}
 }
 
-bool InputManager::GetKeyDown(sf::Keyboard::Key key)
+bool InputManager::GetKeyDown(sf::Keyboard::Key key) const
 {
 	for (sf::Keyboard::Key k: m_keyDownEvents)
 	{
@@ -75,7 +75,7 @@ bool InputManager::GetKeyDown(sf::Keyboard::Key key)
 	return false;
 }
 
-bool InputManager::GetKeyUp(sf::Keyboard::Key key)
+bool InputManager::GetKeyUp(sf::Keyboard::Key key) const
 {
 	for (sf::Keyboard::Key k : m_keyReleasedEvents)
 	{
@@ -85,27 +85,27 @@ bool InputManager::GetKeyUp(sf::Keyboard::Key key)
 	return false;
 }
 
-bool InputManager::GetKeyHeld(sf::Keyboard::Key key)
+bool InputManager::GetKeyHeld(sf::Keyboard::Key key) const
 {
 	return sf::Keyboard::isKeyPressed(key);
 }
 
-bool InputManager::GetMouseDown(int button)
+bool InputManager::GetMouseDown(int button) const
 {
 	return m_mouseButtons[button] == 1;
 }
 
-bool InputManager::GetMouseUp(int button)
+bool InputManager::GetMouseUp(int button) const
 {
 	return m_mouseButtons[button] == 0;
 }
 
-bool InputManager::GetMouseHeld(int button)
+bool InputManager::GetMouseHeld(int button) const
 {
 	return GetMouseDown(button);// the same since button is down this frame?
 }
 
-sf::Vector2i InputManager::GetMousePos()
+sf::Vector2i InputManager::GetMousePos() const
 {
 	return sf::Vector2i(m_mouseX, m_mouseY);
 }

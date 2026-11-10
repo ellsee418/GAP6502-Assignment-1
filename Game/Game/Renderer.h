@@ -10,8 +10,6 @@ public:
 	static Renderer& Get();
 	void Init();
 
-	void UpdateTextGame(sf::Text& scoreText, sf::Text& healthText);
-
 	void Render(std::vector<IEntity*>& vec);
 	void Render(sf::Text& txt, int score);
 	void Render(std::vector<Button>& vec, sf::Font font);
@@ -22,6 +20,7 @@ public:
 	~Renderer();
 private:
 	Renderer(unsigned int height, unsigned int width);
+	void UpdateTextGame(sf::Text& scoreText, sf::Text& healthText);
 
 	sf::RenderWindow* m_window;
 	sf::Font m_font;

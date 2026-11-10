@@ -20,15 +20,15 @@ public:
 	void ClearEvents();
 	void OnEvent(const sf::Event& event);
 
-	bool GetKeyDown(sf::Keyboard::Key key);
-	bool GetKeyUp(sf::Keyboard::Key key);
-	bool GetKeyHeld(sf::Keyboard::Key key);
+	bool GetKeyDown(sf::Keyboard::Key key) const;
+	bool GetKeyUp(sf::Keyboard::Key key) const;
+	bool GetKeyHeld(sf::Keyboard::Key key) const;
 
-	bool GetMouseDown(int button);
-	bool GetMouseUp(int button);
-	bool GetMouseHeld(int button);
+	bool GetMouseDown(int button) const;
+	bool GetMouseUp(int button) const;
+	bool GetMouseHeld(int button) const;
 
-	sf::Vector2i GetMousePos();
+	sf::Vector2i GetMousePos() const;
 
 private:
 	InputManager();

@@ -10,7 +10,7 @@ public:
 	virtual float Speed() const;
 	virtual void Move();
 
-	virtual int GetHealth()const;
+	virtual int GetHealth() const;
 	virtual void TakeDamage(int dmg);
 	virtual void AddHealth(int hp);// in case of healing item
 	virtual void OnDeath();

@@ -21,7 +21,7 @@ Button::Button(const sf::Font& font, std::string text, sf::Vector2f pos, sf::Vec
     CentreText();
 }
 
-bool Button::Clicked()
+bool Button::Clicked() const
 {
     return InputManager::Get().GetMouseDown(Mouse::Left) && m_hovered;
 }
@@ -37,7 +37,7 @@ void Button::Hover()
         m_shape.setFillColor(sf::Color(60, 60, 60));
 }
 
-sf::FloatRect Button::GetBounds()
+sf::FloatRect Button::GetBounds() const
 {
     return m_shape.getGlobalBounds();
 }
