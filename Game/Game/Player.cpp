@@ -71,7 +71,6 @@ void Player::OnEntityCollision(IEntity* other)
     if (type == EntityType::Enemy)
     {
         TakeDamage(20);
-        printf("player hit. health: %d\n", m_health);
     }
 }
 bool Player::CanShoot() const

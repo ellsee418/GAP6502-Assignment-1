@@ -64,7 +64,7 @@ protected:
 	bool			m_active, m_collides, m_draw;
 	sf::Vector2f	m_pos;
 	sf::Color		m_colour;
-	float			m_size;// fixed for now, add w/l later
+	float			m_size;
 	float			m_angle;
 	int				m_points;
 	sf::Vector2f	m_velocity;

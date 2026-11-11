@@ -1,12 +1,5 @@
 #include "Engine.h"
 #include <iostream>
-#include "Projectile.h"
-
-
-void operator delete(void* d)
-{
-	free(d);
-}
 
 
 

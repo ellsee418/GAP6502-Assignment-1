@@ -2,9 +2,12 @@
 #include "Engine.h"
 #include "Renderer.h"
 #include "EventManager.h"
+#include "Game.h"
+#include "Menu.h"
+#include "GameOver.h"
 
 Engine::Engine() 
-	: m_gameState(new MenuState)
+	: m_gameState(new Menu)
 {
 	InitRand();
 	m_gameState->Enter();
@@ -22,13 +25,13 @@ bool Engine::HandleGameState()
 	switch (checkState)
 	{
 	case StateResult::EStateGame:
-		ChangeState(new GameState);
+		ChangeState(new Game);
 		break;
 	case StateResult::EStateMenu:
-		ChangeState(new MenuState);
+		ChangeState(new Menu);
 		break;
 	case StateResult::EStateGameOver:
-		ChangeState(new GameOverState);
+		ChangeState(new GameOver);
 		break;
 	case StateResult::EStateQuit:
 		m_endGame = true;

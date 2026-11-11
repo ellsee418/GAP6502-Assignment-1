@@ -3,7 +3,7 @@
 class Projectile : public Entity
 {
 public:
-	Projectile(sf::Vector2f pos, sf::Vector2f target, sf::Color col = sf::Color::White, float size = 15.f, int points = 30, float angle = 0.f);
+	Projectile(sf::Vector2f pos, sf::Vector2f target, sf::Color col = sf::Color::White, float size = 10.f, int points = 30, float angle = 0.f);
 
 	void Update() override;
 	void Fire();

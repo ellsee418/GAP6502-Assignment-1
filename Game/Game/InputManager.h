@@ -57,7 +57,7 @@ private:
 		}
 
 		int Size() const { return m_size; }
-		sf::Keyboard::Key operator[](const int i) const {return m_array[i]; }//  KeyArray[i] -> m_array[i]
+		sf::Keyboard::Key operator[](int i) const {return m_array[i]; }//  KeyArray[i] -> m_array[i]
 
 	private:
 		void Resize()

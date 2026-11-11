@@ -11,7 +11,7 @@ inline float Length(const sf::Vector2f& vec) { return std::sqrtf(vec.x * vec.x +
 inline sf::Vector2f Normalize(const sf::Vector2f& vec) { return vec / Length(vec); }
 
 // https://www.geeksforgeeks.org/cpp/generate-a-random-float-number-in-cpp/
-inline int RandomInt(int a, int b)
+inline int RandomInt(const int& a, const int& b)
 {
     if (a > b)
         return RandomInt(b, a);
@@ -20,7 +20,7 @@ inline int RandomInt(int a, int b)
     return a + (rand() % (b - a));
 }
 
-inline float RandomFloat(int a, int b)
+inline float RandomFloat(const int& a, const int& b)
 {
     if (a > b)
         return RandomFloat(b, a);
@@ -30,25 +30,23 @@ inline float RandomFloat(int a, int b)
     return (float)RandomInt(a, b) + (float)(rand()) / (float)(RAND_MAX);
 }
 
-inline float Distance(const sf::Vector2f& lhs, sf::Vector2f rhs)
+inline float Distance(const sf::Vector2f& lhs, const sf::Vector2f& rhs)
 {
     float dx = abs(rhs.x - lhs.x);
     float dy = abs(rhs.y - lhs.y);
     return sqrtf(dx * dx + dy * dy);
 }
 
-inline sf::Vector2f RandomPosition(sf::Vector2f avoidPos)
+inline sf::Vector2f RandomPosition(const sf::Vector2f& avoidPos)
 {
-    float x = 0, y = 0;
-    const float padding = 25.f;
-    x = RandomFloat(padding, WIN_WIDTH); 
-    y = RandomFloat(padding, WIN_HEIGHT);
-
-    sf::Vector2f newPos = { x,y };
-    while (Distance(newPos, avoidPos) < padding)
+    sf::Vector2f newPos = { 0.f, 0.f };
+    const float padding = 30.f;
+    do
     {
-        x = RandomFloat(padding, WIN_WIDTH);
-        y = RandomFloat(padding, WIN_HEIGHT);
-    }
+        newPos.x = RandomFloat(padding, WIN_WIDTH -  padding);
+        newPos.y = RandomFloat(padding, WIN_HEIGHT - padding);
+
+    } while (Distance(newPos, avoidPos) < padding);
+
     return newPos;
 }

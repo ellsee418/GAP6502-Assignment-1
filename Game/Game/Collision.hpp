@@ -3,7 +3,6 @@
 #include "Button.h"
 #include "common.h"
 
-// think inline is fine for this. fits the use case.
 inline bool IsCollidingEntity(IEntity* entity, IEntity* other)
 {
 	if (entity == other) return false; 

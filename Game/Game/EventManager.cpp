@@ -19,10 +19,8 @@ bool EventManager::PollEvents(sf::RenderWindow& window)
 			windowOpen = false;
 			continue;
 		}
-		// send event to input manager etc.
 		Dispatch(event);
 	}
-	// successfully polled events on window that is not closed
 	return windowOpen;
 }
 
