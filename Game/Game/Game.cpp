@@ -46,6 +46,10 @@ void Game::Enter()
 void Game::Exit()
 {
 	EntityManager::Get()->DeInit();
+	int score = UIManager::Get().GetScore();
+	int highScore = UIManager::Get().ReadHighScore();
+	if(score >= highScore)
+		UIManager::Get().SaveHighScore(score);
 }
 
 StateResult Game::Update()

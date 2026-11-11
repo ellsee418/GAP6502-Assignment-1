@@ -14,9 +14,15 @@ public:
 	void AddScore(int score);
 	void ResetScore();
 
+	int ReadHighScore();// reads from file
+	int GetHighScore();
+	void SaveHighScore(int score);
+
 	int GetPlayerHealth() const;
 
-	void UpdateUI(sf::Text& scoreText, sf::Text& healthText, sf::Font& font);
+	void UpdateInGameUI(sf::Text& scoreText, sf::Text& healthText, sf::Font& font);
+	void UpdateGameOverUI(sf::Text& scoreText, sf::Text& highScoreText, sf::Font& font);
+
 
 	~UIManager();
 private:
@@ -25,5 +31,7 @@ private:
 
 	int m_score;
 	Player* m_player;
+	int m_highScore;
+	const std::string m_highScorePath = "../Assets/highscore.txt";
 };
 

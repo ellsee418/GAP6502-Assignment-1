@@ -12,6 +12,7 @@ public:
 	sf::Vector2f GetDirection();
 	void Move() override;
 	void OnEntityCollision(IEntity* other) override;
+	void OnDeath() override;
 
 	bool CanShoot() const;
 	void Shoot(sf::Vector2f mouse);

@@ -4,6 +4,7 @@
 #include "Character.h"
 #include "Timer.h"
 #include "Math.hpp"
+#include "UIManager.h"
 
 Player::Player(sf::Vector2f pos, sf::Color col, float size, int points, float angle)
     : Character(pos, col, size, points), m_shootTimer(nullptr)
@@ -72,6 +73,11 @@ void Player::OnEntityCollision(IEntity* other)
     {
         TakeDamage(20);
     }
+}
+void Player::OnDeath()
+{
+    Character::OnDeath();
+    
 }
 bool Player::CanShoot() const
 {

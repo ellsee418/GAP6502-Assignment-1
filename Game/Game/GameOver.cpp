@@ -25,7 +25,6 @@ void GameOver::Init()
 		textRect.top + textRect.height / 2.f);
 	m_text->setPosition(WIN_WIDTH / 2.f, WIN_HEIGHT / 3.f);
 
-	m_score = UIManager::Get().GetScore();
 }
 
 void GameOver::Enter()

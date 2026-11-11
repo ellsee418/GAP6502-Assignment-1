@@ -13,7 +13,7 @@ Renderer::Renderer(unsigned int width = WIN_WIDTH, unsigned int height = WIN_HEI
 
 Renderer::~Renderer()
 {
-	delete m_window;// dont think this is necessary
+	delete m_window;
 }
 
 Renderer& Renderer::Get()
@@ -49,7 +49,7 @@ void Renderer::Render(std::vector<IEntity*>& vec)
 
 	sf::Text scoreText;
 	sf::Text healthText;
-	UIManager::Get().UpdateUI(scoreText, healthText, m_font);
+	UIManager::Get().UpdateInGameUI(scoreText, healthText, m_font);
 
 	m_window->draw(scoreText);
 	m_window->draw(healthText);
@@ -61,13 +61,14 @@ void Renderer::Render(sf::Text& txt, int score)
 	m_window->clear(sf::Color::Red);
 	m_window->draw(txt);
 
-	std::string scoreStr = "Score: " + std::to_string(score);
-	sf::Text scoreText(scoreStr, m_font);
-	float padding = 10.f;
-	scoreText.setPosition(WIN_WIDTH / 2 - scoreText.getGlobalBounds().width /2 ,
-		WIN_HEIGHT /2 + scoreText.getGlobalBounds().height);
+
+	sf::Text scoreText;
+	sf::Text highScoreText;
+
+	UIManager::Get().UpdateGameOverUI(scoreText, highScoreText, m_font);
 
 	m_window->draw(scoreText);
+	m_window->draw(highScoreText);
 	m_window->display();
 }
 
