@@ -53,5 +53,5 @@ StateResult Menu::Update()
 	if (m_quit->Clicked())
 		return StateResult::EStateQuit;
 
-	return StateResult::EStateMenu;
+	return StateResult::EStateContinue;
 }
