@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <memory>
 
+
 #ifdef TEST
 #define SLAB_SIZE 512 * 1024 // val * KB
 #else
@@ -11,6 +12,8 @@
 
 
 MemoryManager* MemoryManager::sInstance = nullptr;
+size_t MemoryManager::s_allocationCount = 0;
+size_t MemoryManager::s_deallocationCount = 0;
 
 MemoryManager::MemoryManager()
 {
@@ -34,6 +37,8 @@ void MemoryManager::Init()
 
 void MemoryManager::DeInit()
 {
+	LOGA(INFO, "[Memory Manager] Total allocations: %zu\n[Memory Manager] Total deallocations: %zu", s_allocationCount, s_deallocationCount);
+	s_allocationCount = 0; s_deallocationCount = 0;
 	CleanUp();
 	free(sInstance);
 	sInstance = nullptr;
@@ -192,23 +197,25 @@ inline void MemoryManager::HeapDeallocate(void* deleted, MetaData* header)
 void* operator new (size_t size)
 {
 	LOGF(INFO, "Allocate called. size: %zu\n", size);
+	MemoryManager::s_allocationCount++;
 	return MemoryManager::Get()->Allocate(size);
 }
 
 void* operator new[](size_t size)
 {
 	LOGF(INFO, "Allocate[] called. size: %zu\n", size);
-	return MemoryManager::Get()->Allocate(size);
+	return operator new(size);
 }
 
 void operator delete(void* ptrToDelete)
 {
 	LOGF(INFO, "Deallocate called. ptr: %p\n", ptrToDelete);
+	MemoryManager::s_deallocationCount++;
 	MemoryManager::Get()->Deallocate(ptrToDelete);
 }
 
 void operator delete[](void* ptrToDelete)
 {
 	LOGF(INFO, "Deallocate[] called. ptr: %p\n", ptrToDelete);
-	MemoryManager::Get()->Deallocate(ptrToDelete);
+	operator delete(ptrToDelete);
 }

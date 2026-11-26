@@ -21,6 +21,10 @@ public:
 
 	MemoryManager(MemoryManager& other) = delete;
 	void operator=(const MemoryManager&) = delete;
+
+
+	static size_t s_allocationCount;
+	static size_t s_deallocationCount;
 protected:
 	MemoryManager();
 	static MemoryManager* sInstance;

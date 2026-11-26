@@ -14,4 +14,3 @@ int main(int argc, char* argv[])
 // TODO:
 // make sure all new/delete is using MM overloads
 // change printfs to be LOGs
-// fix MM reinit after DeInit()
