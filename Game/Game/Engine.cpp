@@ -5,17 +5,20 @@
 #include "Game.h"
 #include "Menu.h"
 #include "GameOver.h"
+#include "Logger.h"
+#include "UIManager.h"
+
 
 Engine::Engine() 
 	: m_gameState(new Menu)
 {
+	LOGA(SYSTEM, "[Engine] Creating Instance.");
 	InitRand();
 	m_gameState->Enter();
 }
 
 Engine::~Engine()
 {
-	delete m_gameState;
 }
 
 bool Engine::HandleGameState()
@@ -66,14 +69,22 @@ void Engine::Run()
 	Update();
 }
 
+void Engine::DeInit()
+{
+	LOGA(SYSTEM, "[Engine] Cleaning up...");
+	UIManager::Get()->DeInit();
+	Renderer::Get().Window().close();
+	delete m_gameState;
+}
+
 void Engine::Update()
 {
 	while (!m_endGame)
 	{
 		if (HandleGameState()) break;
 		m_gameState->Update();
-		EventManager::PollEvents(Renderer::Get().Window());
-		m_endGame = !Renderer::Get().Active();
+		m_endGame = EventManager::PollEvents(Renderer::Get().Window());
 	}
+	DeInit();
 }
 

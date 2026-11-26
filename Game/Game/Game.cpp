@@ -15,13 +15,12 @@ Game::Game()
 
 Game::~Game()
 {
-
 }
 
 void Game::Init()
 {
 	m_player = new Player({ WIN_WIDTH / 2.f, WIN_HEIGHT / 2.f }, sf::Color::Green);
-	UIManager::Get().Init(m_player);
+	UIManager::Get()->Init(m_player);
 	EntityManager::Get()->AddEntity(m_player);
 
 	for (int i = 0; i < 10; ++i)
@@ -46,10 +45,10 @@ void Game::Enter()
 void Game::Exit()
 {
 	EntityManager::Get()->DeInit();
-	int score = UIManager::Get().GetScore();
-	int highScore = UIManager::Get().ReadHighScore();
+	int score = UIManager::Get()->GetScore();
+	int highScore = UIManager::Get()->ReadHighScore();
 	if(score >= highScore)
-		UIManager::Get().SaveHighScore(score);
+		UIManager::Get()->SaveHighScore(score);
 }
 
 StateResult Game::Update()

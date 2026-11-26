@@ -10,6 +10,7 @@ public:
 
 	void Run();
 	void Update();
+	void DeInit();
 private:
 	Engine();
 	~Engine();

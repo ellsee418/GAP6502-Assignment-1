@@ -84,7 +84,7 @@ void Enemy::OnBoundsCollision()
 void Enemy::OnEntityCollision(IEntity* other)
 {
     if (other->Type() == m_type) return;
-    if (other->Type() == EntityType::Projectile) UIManager::Get().AddScore(100);// weird to do this here but makes more sense than on proj
+    if (other->Type() == EntityType::Projectile) UIManager::Get()->AddScore(100);// weird to do this here but makes more sense than on proj
 
 
     TakeDamage(100);

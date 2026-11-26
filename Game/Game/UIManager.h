@@ -7,8 +7,9 @@ class Player;
 class UIManager
 {
 public:
-	static UIManager& Get();
+	static UIManager* Get();
 	void Init(Player* player);
+	void DeInit();
 
 	int GetScore() const;
 	void AddScore(int score);
@@ -25,13 +26,16 @@ public:
 
 
 	~UIManager();
+	UIManager(UIManager& other) = delete;
+	void operator=(const UIManager&) = delete;
 private:
 	UIManager();
 	UIManager(const UIManager&) = delete;
+	static UIManager* sInstance;
 
 	int m_score;
 	Player* m_player;
 	int m_highScore;
-	const std::string m_highScorePath = "../Assets/highscore.txt";
+	const std::string m_highScorePath = "Log/highscore.txt";
 };
 

@@ -8,7 +8,7 @@ Renderer::Renderer(unsigned int width = WIN_WIDTH, unsigned int height = WIN_HEI
 	: m_window(nullptr)
 {
 	Init();
-	m_font.loadFromFile("../Assets/Pong.ttf");
+	m_font.loadFromFile("Assets/Pong.ttf");
 }
 
 Renderer::~Renderer()
@@ -27,7 +27,7 @@ void Renderer::Init()
 	m_window = new sf::RenderWindow(sf::VideoMode({ WIN_WIDTH, WIN_HEIGHT }), "video game");
 	m_window->setFramerateLimit(60);
 	sf::Image icon;
-	if (icon.loadFromFile("../Assets/icon.png"))
+	if (icon.loadFromFile("Assets/icon.png"))
 		m_window->setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
 }
 
@@ -49,7 +49,7 @@ void Renderer::Render(std::vector<IEntity*>& vec)
 
 	sf::Text scoreText;
 	sf::Text healthText;
-	UIManager::Get().UpdateInGameUI(scoreText, healthText, m_font);
+	UIManager::Get()->UpdateInGameUI(scoreText, healthText, m_font);
 
 	m_window->draw(scoreText);
 	m_window->draw(healthText);
@@ -65,7 +65,7 @@ void Renderer::Render(sf::Text& txt, int score)
 	sf::Text scoreText;
 	sf::Text highScoreText;
 
-	UIManager::Get().UpdateGameOverUI(scoreText, highScoreText, m_font);
+	UIManager::Get()->UpdateGameOverUI(scoreText, highScoreText, m_font);
 
 	m_window->draw(scoreText);
 	m_window->draw(highScoreText);

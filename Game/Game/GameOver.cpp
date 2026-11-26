@@ -16,7 +16,7 @@ GameOver::~GameOver()
 
 void GameOver::Init()
 {
-	m_font.loadFromFile("../Assets/Pong.ttf");
+	m_font.loadFromFile("Assets/Pong.ttf");
 	std::string str = "  u died man\n'r' to restart\n 'esc' to exit";
 	m_text = new sf::Text(str, m_font, 30);
 
@@ -34,7 +34,7 @@ void GameOver::Enter()
 
 void GameOver::Exit()
 {
-	UIManager::Get().ResetScore();
+	UIManager::Get()->ResetScore();
 }
 
 StateResult GameOver::Update()

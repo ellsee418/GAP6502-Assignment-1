@@ -7,6 +7,7 @@ class EntityManager
 {
 public:
 	static EntityManager* Get();
+
 	void DeInit();
 
 	void Update();
@@ -16,9 +17,10 @@ public:
 	void FreeDeadProjectiles();
 
 	~EntityManager();
+	EntityManager(EntityManager& other) = delete;
+	void operator=(const EntityManager&) = delete;
 private:
 	EntityManager();
-	EntityManager(const EntityManager&) = delete;
 	static EntityManager* sInstance;
 	static void Init();
 

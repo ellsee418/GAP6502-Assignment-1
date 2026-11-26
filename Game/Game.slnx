@@ -4,4 +4,6 @@
     <Platform Name="x86" />
   </Configurations>
   <Project Path="Game/Game.vcxproj" Id="1ef1623e-ba35-4c85-92d2-26f8ea4bc7c5" />
+  <Project Path="Logger/Logger.vcxproj" Id="cad959ac-a0a8-40b6-a713-92f28771d21f" />
+  <Project Path="MemoryManager/MemoryManager.vcxproj" Id="5a4871ce-09cc-4050-9770-e47a06f6136f" />
 </Solution>

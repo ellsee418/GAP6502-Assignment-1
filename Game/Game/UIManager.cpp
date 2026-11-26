@@ -2,7 +2,9 @@
 #include "UIManager.h"
 #include "Player.h"
 #include <fstream>
+#include "Logger.h"
 
+UIManager* UIManager::sInstance = nullptr;
 
 UIManager::UIManager()
     : m_score(0), m_highScore(0), m_player(nullptr)
@@ -11,18 +13,25 @@ UIManager::UIManager()
 
 UIManager::~UIManager()
 {
-    m_player = nullptr;// deleted elsewhere
 }
 
-UIManager& UIManager::Get()
+UIManager* UIManager::Get()
 {
-    static UIManager sInstance;
+    if (!sInstance) sInstance  = new UIManager();
     return sInstance;
 }
 
 void UIManager::Init(Player* player)
 {
     m_player = player;
+}
+
+void UIManager::DeInit()
+{
+    if(sInstance)
+        delete sInstance;
+    sInstance = nullptr;
+    //m_player is deleted by EntityManager
 }
 
 int UIManager::GetScore() const
@@ -45,15 +54,15 @@ int UIManager::ReadHighScore()
     std::ifstream in(m_highScorePath);
     if (!in)
     {
-        printf("%s could not be found\n", m_highScorePath.c_str());
+        LOGA(ERROR, "[UI Manager] %s could not be found\n", m_highScorePath.c_str());
         return 0;
     }
 
     int score = 0;
     in >> score;
-    if (!in)
+    if (!in) 
     {
-        printf("%s could not be read\n", m_highScorePath.c_str());
+        LOGA(ERROR, "[UI Manager] %s could not be read\n", m_highScorePath.c_str());
         return 0;
     }
     m_highScore = score;
@@ -70,7 +79,7 @@ void UIManager::SaveHighScore(int score)
     std::ofstream out(m_highScorePath);
     if (!out)
     {
-        printf("failed to open %s\n", m_highScorePath.c_str());
+        LOGA(ERROR, "[UI Manager] failed to open %s\n", m_highScorePath.c_str());
         return;
     }
     m_highScore = score;
@@ -79,6 +88,11 @@ void UIManager::SaveHighScore(int score)
 
 int UIManager::GetPlayerHealth() const
 {
+    if (!m_player)
+    {
+        LOGA(ERROR, "[UI Manager] m_player is nullptr. Call Init() first.\n");
+        return 0;
+    }
     return m_player->GetHealth();
 }
 

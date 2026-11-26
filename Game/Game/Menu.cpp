@@ -3,7 +3,6 @@
 #include "Button.h"
 #include "Renderer.h"
 
-
 Menu::Menu()
 	: m_play(nullptr), m_quit(nullptr)
 {
@@ -17,7 +16,7 @@ Menu::~Menu()
 
 void Menu::Init()
 {
-	m_font.loadFromFile("../Assets/Pong.ttf");
+	m_font.loadFromFile("Assets/Pong.ttf");
 	m_play = new Button(m_font, "Play", { 0.f,0.f });
 	m_quit = new Button(m_font, "Quit", { 0.f,0.f });
 

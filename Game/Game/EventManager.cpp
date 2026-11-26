@@ -7,21 +7,21 @@ bool EventManager::PollEvents(sf::RenderWindow& window)
 {
 	InputManager::Get().ClearEvents();
 
-	if (!window.isOpen()) return false;
+	if (!window.isOpen()) return true;
 
-	bool windowOpen = true;
+	bool windowClosed = false;
 	sf::Event event;
 	while (window.pollEvent(event))
 	{
 		if (event.type == sf::Event::Closed)
 		{
 			window.close();
-			windowOpen = false;
+			windowClosed = true;
 			continue;
 		}
 		Dispatch(event);
 	}
-	return windowOpen;
+	return windowClosed;
 }
 
 void EventManager::Dispatch(const sf::Event& event)
