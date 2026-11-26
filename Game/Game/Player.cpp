@@ -32,9 +32,9 @@ void Player::Update()
 
 void Player::HandleShoot()
 {
-    if (InputManager::Get().GetMouseDown(Mouse::Left))
+    if (InputManager::Get()->GetMouseDown(Mouse::Left))
     {
-        sf::Vector2f mouse = (sf::Vector2f)InputManager::Get().GetMousePos();
+        sf::Vector2f mouse = (sf::Vector2f)InputManager::Get()->GetMousePos();
         Shoot(mouse);
     }
 }
@@ -42,13 +42,13 @@ void Player::HandleShoot()
 sf::Vector2f Player::GetDirection()
 {
     sf::Vector2f dir = { 0.f, 0.f };
-    if (InputManager::Get().GetKeyHeld(sf::Keyboard::S))
+    if (InputManager::Get()->GetKeyHeld(sf::Keyboard::S))
         dir.y += 1;
-    if (InputManager::Get().GetKeyHeld(sf::Keyboard::W))
+    if (InputManager::Get()->GetKeyHeld(sf::Keyboard::W))
         dir.y -= 1;
-    if (InputManager::Get().GetKeyHeld(sf::Keyboard::D))
+    if (InputManager::Get()->GetKeyHeld(sf::Keyboard::D))
         dir.x += 1;
-    if (InputManager::Get().GetKeyHeld(sf::Keyboard::A))
+    if (InputManager::Get()->GetKeyHeld(sf::Keyboard::A))
         dir.x -= 1;
 
     return dir;

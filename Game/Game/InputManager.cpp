@@ -1,21 +1,33 @@
 #include "InputManager.h"
+#include "Logger.h"
+
+
+InputManager* InputManager::sInstance = nullptr;
 
 InputManager::InputManager()
 	: m_keysHeld(nullptr), m_mouseButtons(nullptr), m_mouseX(0), m_mouseY(0)
 {
+	LOGA(SYSTEM, "[InputManager] Created Instance.");
 	m_keysHeld = new int[sf::Keyboard::KeyCount];
 	m_mouseButtons = new int[sf::Mouse::ButtonCount] {};
 }
 
 InputManager::~InputManager()
 {
-	delete[] m_keysHeld;
-	delete[] m_mouseButtons;
+
 }
 
-InputManager& InputManager::Get()
+void InputManager::DeInit()
 {
-	static InputManager sInstance;
+	LOGA(WARNING, "[InputManager] Cleaning Up...");
+	delete[] m_keysHeld;
+	delete[] m_mouseButtons;
+	delete sInstance;
+}
+
+InputManager* InputManager::Get()
+{
+	if (!sInstance) sInstance = new InputManager();
 	return sInstance;
 }
 

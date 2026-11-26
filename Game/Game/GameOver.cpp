@@ -39,11 +39,11 @@ void GameOver::Exit()
 
 StateResult GameOver::Update()
 {
-	Renderer::Get().Render(*m_text, m_score);
+	Renderer::Get()->Render(*m_text, m_score);
 
-	if (InputManager::Get().GetKeyDown(sf::Keyboard::R))
+	if (InputManager::Get()->GetKeyDown(sf::Keyboard::R))
 		return StateResult::EStateGame;
-	if (InputManager::Get().GetKeyDown(sf::Keyboard::Escape))
+	if (InputManager::Get()->GetKeyDown(sf::Keyboard::Escape))
 		return StateResult::EStateMenu;
 
 	return StateResult::EStateContinue;

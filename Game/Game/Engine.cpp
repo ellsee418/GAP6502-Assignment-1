@@ -6,13 +6,17 @@
 #include "Menu.h"
 #include "GameOver.h"
 #include "Logger.h"
-#include "UIManager.h"
 
+//only for DeInit()
+#include "UIManager.h"
+#include "InputManager.h"
+
+Engine* Engine::sInstance = nullptr;
 
 Engine::Engine() 
 	: m_gameState(new Menu)
 {
-	LOGA(SYSTEM, "[Engine] Creating Instance.");
+	LOGA(SYSTEM, "[Engine] Create Instance.");
 	InitRand();
 	m_gameState->Enter();
 }
@@ -58,9 +62,9 @@ void Engine::ChangeState(IState* newState)
 
 }
 
-Engine& Engine::Get()
+Engine* Engine::Get()
 {
-	static Engine sInstance;
+	if (!sInstance) sInstance = new Engine();
 	return sInstance;
 }
 
@@ -71,10 +75,13 @@ void Engine::Run()
 
 void Engine::DeInit()
 {
-	LOGA(SYSTEM, "[Engine] Cleaning up...");
+	// could put somewhere else so Engine doesnt have to include everything?
 	UIManager::Get()->DeInit();
-	Renderer::Get().Window().close();
+	Renderer::Get()->DeInit();
+	InputManager::Get()->DeInit();
+	LOGA(SYSTEM, "[Engine] Cleaning up...");
 	delete m_gameState;
+	delete sInstance;
 }
 
 void Engine::Update()
@@ -83,7 +90,7 @@ void Engine::Update()
 	{
 		if (HandleGameState()) break;
 		m_gameState->Update();
-		m_endGame = EventManager::PollEvents(Renderer::Get().Window());
+		m_endGame = EventManager::PollEvents(Renderer::Get()->Window());
 	}
 	DeInit();
 }

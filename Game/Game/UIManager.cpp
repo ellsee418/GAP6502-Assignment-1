@@ -23,14 +23,16 @@ UIManager* UIManager::Get()
 
 void UIManager::Init(Player* player)
 {
+    LOGA(SYSTEM, "[UI Manager] Create Instance.");
+    if (!player)
+        LOGA(ERROR, "[UI Manager] m_player initialised to nullptr.");
     m_player = player;
 }
 
 void UIManager::DeInit()
 {
-    if(sInstance)
-        delete sInstance;
-    sInstance = nullptr;
+    LOGA(WARNING, "[UI Manager] Cleaning Up...");
+    delete sInstance;
     //m_player is deleted by EntityManager
 }
 

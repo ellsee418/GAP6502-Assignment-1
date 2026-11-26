@@ -5,7 +5,7 @@
 
 bool EventManager::PollEvents(sf::RenderWindow& window)
 {
-	InputManager::Get().ClearEvents();
+	InputManager::Get()->ClearEvents();
 
 	if (!window.isOpen()) return true;
 
@@ -26,5 +26,5 @@ bool EventManager::PollEvents(sf::RenderWindow& window)
 
 void EventManager::Dispatch(const sf::Event& event)
 {
-	InputManager::Get().OnEvent(event);
+	InputManager::Get()->OnEvent(event);
 }

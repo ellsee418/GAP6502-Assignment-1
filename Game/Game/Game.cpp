@@ -30,7 +30,7 @@ void Game::Init()
 StateResult Game::HandleStates()
 {
 	//TODO: add pause
-	if (InputManager::Get().GetKeyDown(sf::Keyboard::Escape))
+	if (InputManager::Get()->GetKeyDown(sf::Keyboard::Escape))
 		return StateResult::EStateMenu;
 	if (!m_player->Active())
 		return StateResult::EStateGameOver;

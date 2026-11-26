@@ -7,8 +7,9 @@ class Button;
 class Renderer
 {
 public:
-	static Renderer& Get();
+	static Renderer* Get();
 	void Init();
+	void DeInit();
 
 	void Render(std::vector<IEntity*>& vec);
 	void Render(sf::Text& txt, int score);
@@ -18,6 +19,10 @@ public:
 	bool Active();
 	sf::RenderWindow& Window() const;
 	~Renderer();
+
+	Renderer(Renderer& other) = delete;
+	void operator=(const Renderer&) = delete;
+	static Renderer* sInstance;
 private:
 	Renderer(unsigned int height, unsigned int width);
 

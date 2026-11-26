@@ -44,7 +44,7 @@ StateResult Menu::Update()
 	m_play->Hover();
 	m_quit->Hover();
 
-	Renderer::Get().Render(m_buttons, m_font);
+	Renderer::Get()->Render(m_buttons, m_font);
 
 
 	if (m_play->Clicked())

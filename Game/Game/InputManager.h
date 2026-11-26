@@ -16,7 +16,8 @@ class InputManager
 {
 public:
 	~InputManager();
-	static InputManager& Get();
+	void DeInit();
+	static InputManager* Get();
 	void ClearEvents();
 	void OnEvent(const sf::Event& event);
 
@@ -30,6 +31,9 @@ public:
 
 	sf::Vector2i GetMousePos() const;
 
+	InputManager(InputManager& other) = delete;
+	void operator=(const InputManager&) = delete;
+	static InputManager* sInstance;
 private:
 	InputManager();
 	int* m_keysHeld;

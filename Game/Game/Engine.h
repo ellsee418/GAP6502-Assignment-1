@@ -6,11 +6,14 @@
 class Engine
 {
 public:
-	static Engine& Get();
+	static Engine* Get();
 
 	void Run();
 	void Update();
 	void DeInit();
+
+	Engine(Engine& other) = delete;
+	void operator=(const Engine&) = delete;
 private:
 	Engine();
 	~Engine();
@@ -20,6 +23,7 @@ private:
 
 	IState* m_gameState;
 	bool m_endGame = false;
+	static Engine* sInstance;
 protected:
 
 };

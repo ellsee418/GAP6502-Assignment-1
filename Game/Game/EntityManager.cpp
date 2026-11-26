@@ -27,7 +27,7 @@ void EntityManager::DeInit()
 void EntityManager::Update()
 {
 	HandleEntities();
-	Renderer::Get().Render(m_entities);
+	Renderer::Get()->Render(m_entities);
 }
 
 void EntityManager::AddEntity(IEntity* entity)

@@ -23,12 +23,12 @@ Button::Button(const sf::Font& font, std::string text, sf::Vector2f pos, sf::Vec
 
 bool Button::Clicked() const
 {
-    return InputManager::Get().GetMouseDown(Mouse::Left) && m_hovered;
+    return InputManager::Get()->GetMouseDown(Mouse::Left) && m_hovered;
 }
 
 void Button::Hover()
 {
-    sf::Vector2f mouse = (sf::Vector2f)InputManager::Get().GetMousePos();
+    sf::Vector2f mouse = (sf::Vector2f)InputManager::Get()->GetMousePos();
     m_hovered = IsCollidingMouse(mouse, GetBounds());
 
     if (m_hovered)

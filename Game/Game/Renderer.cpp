@@ -3,22 +3,25 @@
 #include "UIManager.h"
 #include "common.h"
 #include "Button.h"
+#include "Logger.h"
+
+Renderer* Renderer::sInstance = nullptr;
 
 Renderer::Renderer(unsigned int width = WIN_WIDTH, unsigned int height = WIN_HEIGHT)
 	: m_window(nullptr)
 {
+	LOGA(SYSTEM, "[Renderer] Create Instance.");
 	Init();
 	m_font.loadFromFile("Assets/Pong.ttf");
 }
 
 Renderer::~Renderer()
 {
-	delete m_window;
 }
 
-Renderer& Renderer::Get()
+Renderer* Renderer::Get()
 {
-	static Renderer sInstance;
+	if (!sInstance) sInstance = new Renderer();
 	return sInstance;
 }
 
@@ -29,6 +32,14 @@ void Renderer::Init()
 	sf::Image icon;
 	if (icon.loadFromFile("Assets/icon.png"))
 		m_window->setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
+}
+
+void Renderer::DeInit()
+{
+	LOGA(WARNING, "[Renderer] Cleaning Up...");
+	Renderer::Get()->Window().close();
+	delete m_window;
+	delete sInstance;
 }
 
 void Renderer::Render(std::vector<IEntity*>& vec)
