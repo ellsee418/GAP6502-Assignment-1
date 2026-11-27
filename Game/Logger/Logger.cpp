@@ -76,30 +76,40 @@ void Logger::LogToConsole(const LogType& type, const char* log, ...)// forced ne
 {
 	va_list args;
 	va_start(args, log);
-	vprintf(log, args);
+	char* out = AppendColourToString(type, log);
+	vprintf(out, args);
+	printf("\033[0m");
 	va_end(args);
 }
 
 void Logger::LogToConsole(const LogType& type, const char* log, va_list& args)// internal only - forced new line
 {
+	char* out = AppendColourToString(type, log);
+	vprintf(out, args);
+	va_end(args);
+	printf("\033[0m\n");
+}
+
+char* Logger::AppendColourToString(const LogType& type, const char* log)
+{
 	const char* colour;
 	switch (type)
 	{
-		case LogType::ERROR:
-			colour = "\033[31m";// RED
-			break;
-		case LogType::SUCCESS:
-			colour = "\033[32m";// GREEN
-			break;
-		case LogType::WARNING:
-			colour = "\033[33m";//YELLOW
-			break;
-		case LogType::SYSTEM:
-			colour = "\033[36m";// BLUE
-			break;
-		default:
-			colour = "\033[1m";// BOLD WHITE
-			break;
+	case LogType::ERROR:
+		colour = "\033[31m";// RED
+		break;
+	case LogType::SUCCESS:
+		colour = "\033[32m";// GREEN
+		break;
+	case LogType::WARNING:
+		colour = "\033[33m";//YELLOW
+		break;
+	case LogType::SYSTEM:
+		colour = "\033[36m";// BLUE
+		break;
+	default:
+		colour = "\033[1m";// BOLD WHITE
+		break;
 	}
 	size_t len = strlen(colour) + strlen(log) + 1;
 	char* out = static_cast<char*>(malloc(len));
@@ -109,10 +119,7 @@ void Logger::LogToConsole(const LogType& type, const char* log, va_list& args)//
 		strcpy(out, colour);
 		strcat(out, log);
 	}
-
-	vprintf(out, args);
-	va_end(args);
-	printf("\033[0m\n");
+	return out;
 }
 
 char* Logger::FormatForFile(const char* log, const va_list& args)// does not consume va_list arg

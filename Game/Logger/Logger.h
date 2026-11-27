@@ -28,6 +28,7 @@ public:
 	void LogToFile(const LogType& type, const char* log, ...);
 	void LogToConsole(const LogType& type, const char* log, ...);
 
+	char* AppendColourToString(const LogType& type, const char* log);
 
 	Logger(Logger& other) = delete;
 	void operator=(const Logger&) = delete;

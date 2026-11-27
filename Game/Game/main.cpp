@@ -1,6 +1,7 @@
 #include "MemoryManager.h"
 #include "Engine.h"
 #include <iostream>
+#include "Logger.h"
 
 
 
@@ -13,4 +14,3 @@ int main(int argc, char* argv[])
 
 // TODO:
 // triple quardruple check that new/delete is always MM
-// LOGC ignore colours
