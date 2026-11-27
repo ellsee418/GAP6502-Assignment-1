@@ -1,8 +1,9 @@
 #pragma once
 #include "Character.h"
 #include "Timer.h"
+#include "Profiler.h"
 
-class Enemy : public Character
+class Enemy : public Character, InstanceCount<Enemy>
 {
 public:
 	Enemy(sf::Vector2f pos = { 0.f, 0.f }, sf::Color col = sf::Color::Red, float size = 20.f, int points = 3, float angle = 0.f);

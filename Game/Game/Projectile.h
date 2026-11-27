@@ -1,6 +1,7 @@
 #pragma once
 #include "Entity.h"
-class Projectile : public Entity
+#include "Profiler.h"
+class Projectile : public Entity, InstanceCount<Projectile>
 {
 public:
 	Projectile(sf::Vector2f pos, sf::Vector2f target, sf::Color col = sf::Color::White, float size = 10.f, int points = 30, float angle = 0.f);
