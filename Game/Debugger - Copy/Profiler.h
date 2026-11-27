@@ -1,5 +1,6 @@
 #pragma once
 #include "Logger.h"
+//#include "Timer.h"
 class Profiler
 {
 public:
@@ -10,8 +11,11 @@ private:
 
 };
 
+
+
 //https://stackoverflow.com/questions/700097/memory-allocation-profiling-in-c
 // add as base class to any object for instance stats
+// maybe should be in its own file
 template<class T>
 class InstanceCount
 {

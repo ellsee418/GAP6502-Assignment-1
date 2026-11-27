@@ -14,7 +14,6 @@ Projectile::Projectile(sf::Vector2f pos, sf::Vector2f target, sf::Color col, flo
 
 void Projectile::Update()
 {
-    InstanceCount::PrintCurrent();
 	m_pos += m_velocity;
 }
 

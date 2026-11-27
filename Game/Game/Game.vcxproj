@@ -111,7 +111,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)/SFML/include;$(SolutionDir)/MemoryManager;$(SolutionDir)/Logger</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)/SFML/include;$(SolutionDir)/MemoryManager;$(SolutionDir)/Debugger</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -189,8 +189,8 @@
     <ClInclude Include="Button.h" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Logger\Logger.vcxproj">
-      <Project>{cad959ac-a0a8-40b6-a713-92f28771d21f}</Project>
+    <ProjectReference Include="..\Debugger\Debugger.vcxproj">
+      <Project>{93ade8be-5e35-4e1d-9a5f-37b4b2f91cdc}</Project>
     </ProjectReference>
     <ProjectReference Include="..\MemoryManager\MemoryManager.vcxproj">
       <Project>{5a4871ce-09cc-4050-9770-e47a06f6136f}</Project>
