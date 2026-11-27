@@ -23,6 +23,6 @@ private:
 	sf::Font m_font;
 	Button* m_play;
 	Button* m_quit;
-	std::vector<Button> m_buttons;
+	std::vector<Button*> m_buttons;
 };
 

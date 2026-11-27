@@ -13,3 +13,4 @@ int main(int argc, char* argv[])
 
 // TODO:
 // triple quardruple check that new/delete is always MM
+// LOGC ignore colours

@@ -83,7 +83,7 @@ void Renderer::Render(sf::Text& txt, int score)
 	m_window->display();
 }
 
-void Renderer::Render(std::vector<Button>& vec, sf::Font font)
+void Renderer::Render(std::vector<Button*>& vec, sf::Font font)
 {
 	m_window->clear(sf::Color::Black);
 
@@ -94,8 +94,8 @@ void Renderer::Render(std::vector<Button>& vec, sf::Font font)
 
 	for (int i = 0; i < vec.size(); ++i)
 	{
-		m_window->draw(vec[i].GetShape());
-		m_window->draw(vec[i].GetText());
+		m_window->draw(vec[i]->GetShape());
+		m_window->draw(vec[i]->GetText());
 	}
 
 	m_window->display();

@@ -111,9 +111,8 @@ void Logger::LogToConsole(const LogType& type, const char* log, va_list& args)//
 	}
 
 	vprintf(out, args);
-	printf("\033[0m");
 	va_end(args);
-	printf("\n");
+	printf("\033[0m\n");
 }
 
 char* Logger::FormatForFile(const char* log, const va_list& args)// does not consume va_list arg

@@ -2,6 +2,7 @@
 #include "common.h"
 #include "Button.h"
 #include "Renderer.h"
+#include "Logger.h"
 
 Menu::Menu()
 	: m_play(nullptr), m_quit(nullptr)
@@ -26,8 +27,8 @@ void Menu::Init()
 	m_quit->SetPosition({ (WIN_WIDTH - m_quit->GetBounds().width) / 2,
 		(WIN_HEIGHT + m_quit->GetBounds().height + gap) / 2 });
 
-	m_buttons.push_back(*m_play);
-	m_buttons.push_back(*m_quit);
+	m_buttons.push_back(m_play);
+	m_buttons.push_back(m_quit);
 }
 
 void Menu::Enter()
@@ -43,6 +44,7 @@ StateResult Menu::Update()
 {
 	m_play->Hover();
 	m_quit->Hover();
+
 
 	Renderer::Get()->Render(m_buttons, m_font);
 

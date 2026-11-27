@@ -32,7 +32,7 @@ void Button::Hover()
     m_hovered = IsCollidingMouse(mouse, GetBounds());
 
     if (m_hovered)
-        m_shape.setFillColor(sf::Color(200, 200, 200));
+        m_shape.setFillColor(sf::Color(120, 120, 120));
     else
         m_shape.setFillColor(sf::Color(60, 60, 60));
 }
